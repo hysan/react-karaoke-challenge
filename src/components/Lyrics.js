@@ -41,13 +41,16 @@ class Lyrics extends Component {
   }
 
   lyricsToArray(lyrics) {
-    const lines = lyrics.split('\n');
-    const words = lines.reduce((words, line) => {
-      words = words.concat(line.split(' '))
-      words.push('\n');
+    if (lyrics) {
+      const lines = lyrics.split('\n');
+      const words = lines.reduce((words, line) => {
+        words = words.concat(line.split(' '))
+        words.push('\n');
+        return words;
+      }, []);
       return words;
-    }, []);
-    return words;
+    }
+    return [];
   }
 
   nextWord = () => {
