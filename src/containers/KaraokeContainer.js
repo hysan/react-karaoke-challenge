@@ -7,8 +7,10 @@ class KaraokeContainer extends Component {
   render() {
     return (
       <div className="karaoke-container">
-        <Filter />
-        <SongList />
+        <div className="sidebar">
+          <Filter />
+          <SongList />
+        </div>
         <KaraokeDisplay />
       </div>
     );
