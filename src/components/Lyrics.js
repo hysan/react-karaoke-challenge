@@ -60,7 +60,10 @@ class Lyrics extends Component {
 
   renderHighlightedLyrics = () => {
     const { lyricsArray, currentWord } = this.state;
-    return <span className="highlight">{lyricsArray.slice(0, currentWord).join(' ')}</span>
+    if (currentWord === 0) {
+      return null;
+    }
+    return <span className="highlight"> {lyricsArray.slice(0, currentWord).join(' ')}</span>
   }
 
   renderRemainingLyrics = () => {
