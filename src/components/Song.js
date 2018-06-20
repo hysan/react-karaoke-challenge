@@ -2,9 +2,11 @@ import React from 'react';
 
 const Song = () => {
   return (
-    <div className="song">
-      {/* Your Code Goes Here */}
-    </div>
+    <tr className="song">
+      <td>title</td>
+      <td>singer</td>
+      <td><button>Play</button></td>
+    </tr>
   )
 }
 
