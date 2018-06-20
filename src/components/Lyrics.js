@@ -1,10 +1,79 @@
 import React, { Component } from 'react';
 
 class Lyrics extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      lyrics: this.props.lyrics,
+      lyricsArray: this.lyricsToArray(this.props.lyrics),
+      currentWord: 0,
+      timer: null,
+    }
+  }
+
+  componentDidMount() {
+    this.setState({
+      timer: setInterval(this.nextWord, 1000),
+    });
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.lyrics !== state.lyrics) {
+      return {
+        lyrics: props.lyrics,
+        lyricsArray: this.lyricsToArray(this.props.lyrics),
+        currentWord: 0,
+        timer: state.timer,
+      }
+    }
+    return null;
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextState.currentWord <= nextState.lyricsArray.length
+  }
+
+  componentWillUnmount() {
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
+  }
+
+  lyricsToArray(lyrics) {
+    const lines = lyrics.split('\n');
+    const words = lines.reduce((words, line) => {
+      words = words.concat(line.split(' '))
+      words.push('\n');
+      return words;
+    }, []);
+    return words;
+  }
+
+  nextWord = () => {
+    if (this.state.currentWord <= this.state.lyricsArray.length) {
+      this.setState(prevState => {
+        return { currentWord: prevState.currentWord + 1 }
+      })
+    }
+  }
+
+  renderHighlightedLyrics = () => {
+    const { lyricsArray, currentWord } = this.state;
+    return <span className="highlight">{lyricsArray.slice(0, currentWord).join(' ')}</span>
+  }
+
+  renderRemainingLyrics = () => {
+    const { lyricsArray, currentWord } = this.state;
+    return <span className="unhighlighted">{lyricsArray.slice(currentWord).join(' ')}</span>
+  }
+
   render() {
     return (
       <div className="lyrics">
-        <p>{this.props.lyrics}</p>
+        <pre>
+          { this.renderHighlightedLyrics() } { this.renderRemainingLyrics() }
+        </pre>
       </div>
     );
   }
