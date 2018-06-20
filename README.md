@@ -18,19 +18,27 @@ It's now up to you to fix the rest of the codebase before the start of Karaoke N
 
 ### Setup
 
+#### Frontend
+
 - Clone this project and `cd` into it.
 - Run `npm install` to install your dependencies.
 - Run `npm start` and the project will be running on `localhost:3000`.
+
+#### Backend
+
+- Clone this repository in a different directory: `https://github.com/hysan/react-karaoke-challenge-backend`
+- `cd` into it.
+- Run `npm install` to install your dependencies.
+- Run `npm start` and the API will be running on `localhost:4000`.
 
 ### Deliverables
 
 This is your end goal:
 
-
 ![result](react-karaoke-challenge.gif)
 
 - [ ] Display a list of songs with their artist in the left sidebar.
-- [ ] The list of songs will come from `URL TBD`.
+- [ ] The list of songs will come from `http://localhost:4000`.
 - [ ] Clicking the `Play` button, located next to each song, will load the song in the right panel.
 - [ ] The right panel will display the song's title and lyrics.
 - [ ] The song's lyrics should be passed into the `Lyrics` component. You should not be editing this file.
@@ -43,7 +51,9 @@ This is your end goal:
 
 ### Suggested Workflow
 
-TODO
+- Use the fake data in `data/songs.js` first to make sure some of your components work.
+- Then fetch the data so you have a way to confirm it.
+- After that, you can tackle the rest of the deliverables.
 
 ### Criteria
 
