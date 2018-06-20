@@ -20,7 +20,7 @@ header h1 {
 
 div.karaoke-container {
   display: flex;
-  margin: 10px 0;
+  margin: 20px 0;
 }
 
 div.sidebar {
@@ -28,11 +28,43 @@ div.sidebar {
   display: flex;
   flex-direction: column;
   border-right: 1px solid grey;
-  margin: 0 20px;
+  padding: 0 20px;
+}
+
+div.filter {
+  display: flex;
+  font-size: 1.5em;
+}
+
+#title-filter {
+  flex: 1;
+  margin-left: 10px;
+}
+
+table.song-list {
+  margin: 20px 0;
+  width: 100%;
+}
+
+table.song-list td,
+table.song-list th {
+  border: 1px solid #cbcbcb;
+  padding: 15px;
+}
+
+table.song-list th {
+  background-color: #e0e0e0
+}
+
+td button {
+  margin: 0;
+  padding: 5px;
+  width: 100%;
 }
 
 div.karaoke-display {
   flex: 3;
+  padding: 0 10px;
 }
 
 div.karaoke-display h2 {
