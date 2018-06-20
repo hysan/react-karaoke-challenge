@@ -1,12 +1,25 @@
 import React, { Component } from 'react';
 
+function lyricsToArray(lyrics) {
+  if (lyrics) {
+    const lines = lyrics.split('\n');
+    const words = lines.reduce((words, line) => {
+      words = words.concat(line.split(' '))
+      words.push('\n');
+      return words;
+    }, []);
+    return words;
+  }
+  return [];
+}
+
 class Lyrics extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       lyrics: this.props.lyrics,
-      lyricsArray: this.lyricsToArray(this.props.lyrics),
+      lyricsArray: lyricsToArray(this.props.lyrics),
       currentWord: 0,
       timer: null,
     }
@@ -22,7 +35,7 @@ class Lyrics extends Component {
     if (props.lyrics !== state.lyrics) {
       return {
         lyrics: props.lyrics,
-        lyricsArray: this.lyricsToArray(this.props.lyrics),
+        lyricsArray: lyricsToArray(props.lyrics),
         currentWord: 0,
         timer: state.timer,
       }
@@ -38,16 +51,6 @@ class Lyrics extends Component {
     if (this.timer) {
       clearInterval(this.timer);
     }
-  }
-
-  lyricsToArray(lyrics) {
-    const lines = lyrics.split('\n');
-    const words = lines.reduce((words, line) => {
-      words = words.concat(line.split(' '))
-      words.push('\n');
-      return words;
-    }, []);
-    return words;
   }
 
   nextWord = () => {
