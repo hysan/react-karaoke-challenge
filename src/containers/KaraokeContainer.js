@@ -6,9 +6,15 @@ import songs from '../data/songs';
 
 class KaraokeContainer extends Component {
   state = {
-    songs,
+    songs: [],
     currentSong: null,
     title: "",
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:4000/songs')
+      .then(res => res.json())
+      .then(json => this.setState({ songs: json }))
   }
 
   playSong = (id) => {
