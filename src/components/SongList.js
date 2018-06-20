@@ -11,7 +11,12 @@ const SongList = (props) => {
           <th>▶</th>
         </tr>
 
-        {props.songs.map(song => <Song key={song.id} title={song.title} singer={song.singer} />)}
+        {props.songs.map(song => {
+          const playSong = () => { props.playSong(song.id) };
+          return (
+            <Song key={song.id} title={song.title} singer={song.singer} playSong={playSong} />
+          )
+        })}
 
       </tbody>
     </table>
