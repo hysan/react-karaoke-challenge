@@ -22,7 +22,7 @@ class Lyrics extends Component {
     if (props.lyrics !== state.lyrics) {
       return {
         lyrics: props.lyrics,
-        lyricsArray: this.lyricsToArray(this.props.lyrics),
+        lyricsArray: this.lyricsToArray(props.lyrics),
         currentWord: 0,
         timer: state.timer,
       }
