@@ -1,6 +1,4 @@
 import React from 'react';
-import songs from '../data/songs';
-import Song from './Song'
 
 const SongList = () => {
   return (
@@ -13,6 +11,7 @@ const SongList = () => {
         </tr>
 
         {/* Your Code Goes Here */}
+        
       </tbody>
     </table>
   )
