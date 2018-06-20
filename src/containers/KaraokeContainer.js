@@ -23,7 +23,7 @@ class KaraokeContainer extends Component {
   }
 
   filteredSongs = () => {
-    return this.state.songs.filter(song => song.title.includes(this.state.title));
+    return this.state.songs.filter(song => song.title.toLowerCase().includes(this.state.title.toLowerCase()));
   }
 
   render() {
