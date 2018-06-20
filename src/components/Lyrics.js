@@ -14,7 +14,7 @@ class Lyrics extends Component {
 
   componentDidMount() {
     this.setState({
-      timer: setInterval(this.nextWord, 1000),
+      timer: setInterval(this.nextWord, 250),
     });
   }
 
