@@ -26,7 +26,8 @@ It's now up to you to fix the rest of the codebase before the start of Karaoke N
 
 This is your end goal:
 
-Image Goes Here
+
+![result](react-karaoke-challenge.gif)
 
 - [ ] Display a list of songs with their artist in the left sidebar.
 - [ ] The list of songs will come from `URL TBD`.
