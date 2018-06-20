@@ -8,6 +8,7 @@ class KaraokeContainer extends Component {
   state = {
     songs,
     currentSong: null,
+    title: "",
   }
 
   playSong = (id) => {
@@ -15,12 +16,22 @@ class KaraokeContainer extends Component {
     this.setState({ currentSong });
   }
 
+  updateTitle = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    })
+  }
+
+  filteredSongs = () => {
+    return this.state.songs.filter(song => song.title.includes(this.state.title));
+  }
+
   render() {
     return (
       <div className="karaoke-container">
         <div className="sidebar">
-          <Filter />
-          <SongList songs={this.state.songs} playSong={this.playSong} />
+          <Filter title={this.state.title} handleChange={this.updateTitle} />
+          <SongList songs={this.filteredSongs()} playSong={this.playSong} />
         </div>
         <KaraokeDisplay {...this.state.currentSong} />
       </div>
