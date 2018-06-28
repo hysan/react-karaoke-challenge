@@ -76,6 +76,30 @@ div.lyrics pre {
   overflow-x: scroll;
 }
 
+div.vote-bar {
+  display: flex;
+}
+
+div.vote-bar button {
+  flex: 1;
+}
+
+button.up-button,
+button.down-button {
+  color: white;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  margin: 0px 5px;
+}
+
+button.up-button {
+  background: rgb(28, 184, 65);
+}
+
+button.down-button {
+  background: rgb(202, 60, 60);
+}
+
 .highlight {
   color: orange;
 }
