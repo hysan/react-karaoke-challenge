@@ -12,14 +12,33 @@ class KaraokeContainer extends Component {
   }
 
   componentDidMount() {
+    this.loadSongs();
+  }
+
+  loadSongs = () => {
     fetch('http://localhost:4000/songs')
       .then(res => res.json())
       .then(json => this.setState({ songs: json }))
   }
 
+  getSong = (id) => {
+    fetch(`http://localhost:4000/songs/${id}`)
+      .then(res => res.json())
+      .then(json => {
+        const songs = this.state.songs.map(song => {
+          if (song.id === id) {
+            return json;
+          }
+          return song;
+        })
+
+        this.setState({ songs })
+      })
+  }
+
   playSong = (id) => {
     const currentSong = this.state.songs.find(song => song.id === id);
-    
+
     fetch(`http://localhost:4000/songs/${currentSong.id}`,
       {
         method: 'PATCH',
@@ -29,21 +48,20 @@ class KaraokeContainer extends Component {
     )
       .then(res => res.json())
       .then(json => {
-        const songs = this.state.songs.map(song => {
-          if (song.id === json.id) {
-            return json;
-          }
-          return song;
-        });
-
         // This should act like a real API where we only
         // start playing after getting a music stream back
         // from the API. Hence doing the setState for
         // currentSong here instead of before the patch.
         this.setState({
-          songs,
           currentSong: json,
         });
+
+        // If this were a real API, we'd either refetch
+        // all of the songs since other people could be
+        // updating the list, or we'd refetch a single
+        // and update our list.
+        this.loadSongs();
+        // this.getSong(json.id);
       })
   }
 
