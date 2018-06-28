@@ -31,6 +31,15 @@ It's now up to you to fix the rest of the codebase before the start of Karaoke N
 - Run `npm install` to install your dependencies.
 - Run `npm start` and the API will be running on `localhost:4000`.
 
+**Routes**
+
+URL for database: `http://localhost:4000`
+
+| route        | method  | returns             |
+| ------------ |:-------:| -------------------:|
+| `/songs`     | `GET`   | array of songs      |
+| `/songs/:id` | `PATCH` | updated song object |
+
 ### Deliverables
 
 This is your end goal:
@@ -46,8 +55,38 @@ This is your end goal:
 
 **BONUS**
 
-- [ ] The song list should display a new column with the number of times a song was played.
-- [ ] This data, number of plays, will come from the API. Every time a song is played, a `PATCH` should be sent to the database to increment this value for that song.
+Being the React master that you are, you noticed some extra data and capabilities in the API: `plays`, `likes`, and `dislikes`. So you decided to add some flair to the karaoke machine ;)
+
+- _Tracking Plays_
+  - [ ] The song list should display a new column with the number of times a song was played.
+  - [ ] This data, number of plays, will come from the API. Every time a song is played (clicking `Play`), a `PATCH` should be sent to the database to increment this value for that song.
+- _Likes & Dislikes_
+  - [ ] The song list should display two new columns showing the likes/dislikes of a song.
+  - [ ] Refactor and add buttons for liking and disliking the currently playing song above the playing song. A pre-styled component has been provided for you to use:
+
+Your end result should look like this:
+
+![result](react-karaoke-challenge-bonus.gif)
+
+**SUPER BONUS!**
+
+You are a React GOD and thought the previous bonus was easy. You decide to add queuing functionality like a real karaoke booth. To do this, you will be refactoring your code to do the following:
+
+_(Be sure to branch before tackling this!)_
+
+- _Add Queuing_
+  - [ ] Clicking the `Play` button will no longer play the song right away. Instead, it should:
+    - [ ] Add the song to a queue if a song is already playing.
+    - [ ] Play the song if no song is playing.
+  - [ ] The `Lyrics` component has an `onFinish` prop that takes a function. This function will be called when the currently playing song is finished. Use it to play the next song in the queue if any exists.
+- _Display the Queue_
+  - [ ] Refactor and add the `Nav` component above the title filter.
+  - [ ] Clicking on _Song List_ should show all of the songs.
+  - [ ] Clicking on _Queue_ should show the list of queued songs sorted by which will be playing next.
+
+Your end result should look like this:
+
+![result](react-karaoke-challenge-super-bonus.gif)
 
 ### Suggested Workflow
 
