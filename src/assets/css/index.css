@@ -65,10 +65,15 @@ td button {
 div.karaoke-display {
   flex: 3;
   padding: 0 10px;
+  min-width: 0;
 }
 
 div.karaoke-display h2 {
   text-align: center;
+}
+
+div.lyrics pre {
+  overflow-x: scroll;
 }
 
 .highlight {
