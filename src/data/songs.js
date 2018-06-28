@@ -1,6 +1,51 @@
 const songs = [
   {
     id: 0,
+    title: "Johnny B. Goode",
+    singer: "Chuck Berry",
+    lyrics:  `Deep down in Louisiana close to New Orleans
+Way back up in the woods among the evergreens
+There stood a log cabin made of earth and wood
+Where lived a country boy named Johnny B. Goode
+Who never ever learned to read or write so well
+But he could play a guitar just like a-ringin' a bell
+Go go
+Go Johnny go go
+Go Johnny go go
+Go Johnny go go
+Go Johnny go go
+Johnny B. Goode
+He used to carry his guitar in a gunny sack
+Go sit beneath the tree by the railroad track
+Oh, the engineers would see him sitting in the shade
+Strumming with the rhythm that the drivers made
+People passing by they would stop and say
+"Oh my what that little country boy could play"
+Go go
+Go Johnny go go
+Go Johnny go go
+Go Johnny go go
+Go Johnny go go
+Johnny B. Goode
+His mother told him "someday you will be a man
+And you will be the leader of a big old band
+Many people coming from miles around
+To hear you play your music when the sun go down
+Maybe someday your name will be in lights
+Saying "Johnny B. Goode tonight"
+Go go
+Go Johnny go
+Go go go Johnny go
+Go go go Johnny go
+Go go go Johnny go
+Go
+Johnny B. Goode`,
+    plays: 0,
+    likes: 0,
+    dislikes: 0,
+  },
+  {
+    id: 1,
     title: "Your Song",
     singer: "Elton John",
     lyrics:  `It's a little bit funny this feeling inside
@@ -40,10 +85,13 @@ How wonderful life is while you're in the world
 I hope you don't mind
 I hope you don't mind
 That I put down in words
-How wonderful life is while you're in the world`
+How wonderful life is while you're in the world`,
+    plays: 0,
+    likes: 0,
+    dislikes: 0,
   },
   {
-    id: 1,
+    id: 2,
     title: "Don't Stop Believing",
     singer: "Journey",
     lyrics:  `Just a small town girl, living in a lonely world
@@ -82,10 +130,13 @@ Hold on
 Streetlight people
 Don't stop believing
 Hold on to the feeling
-Streetlights people`
+Streetlights people`,
+    plays: 0,
+    likes: 0,
+    dislikes: 0,
   },
   {
-    id: 2,
+    id: 3,
     title: "Hotel California",
     singer: "Eagles",
     lyrics:  `On a dark desert highway, cool wind in my hair
@@ -134,10 +185,13 @@ I had to find the passage back to the place I was before
 'We are programmed to receive.
 You can check out any time you like,
 But you can never leave!'
-`
+`,
+    plays: 0,
+    likes: 0,
+    dislikes: 0,
   },
   {
-    id: 3,
+    id: 4,
     title: "When You're Gone",
     singer: "Avril Lavigne",
     lyrics:  `I always needed time on my own
@@ -193,10 +247,13 @@ The words I need to hear
 Will always get me through the day
 And make it okay
 I miss you
-`
+`,
+    plays: 0,
+    likes: 0,
+    dislikes: 0,
   },
   {
-    id: 4,
+    id: 5,
     title: "Reflection",
     singer: "Christina Aguilera",
     lyrics:  `Look at me you may think you see
@@ -220,10 +277,13 @@ Why must we all conceal what we think and how we feel?
 Must there be a secret me I'm forced to hide?
 I won't pretend that I'm someone else for all time
 When will my reflection show who I am inside?
-When will my reflection show who I am inside?`
+When will my reflection show who I am inside?`,
+    plays: 0,
+    likes: 0,
+    dislikes: 0,
   },
   {
-    id: 5,
+    id: 6,
     title: "Just The Way You Are",
     singer: "Bruno Mars",
     lyrics:  `Oh, her eyes, her eyes make the stars look like they're not shinin'
@@ -267,10 +327,13 @@ And when you smile
 The whole world stops and stares for a while
 'Cause, girl, you're amazing
 Just the way you are
-Yeah`
+Yeah`,
+    plays: 0,
+    likes: 0,
+    dislikes: 0,
   },
   {
-    id: 6,
+    id: 7,
     title: "You Raise Me Up",
     singer: "Josh Groban",
     lyrics:  `When I am down, and, oh, my soul, so weary
@@ -293,10 +356,13 @@ You raise me up, so I can stand on mountains
 You raise me up to walk on stormy seas
 I am strong when I am on your shoulders
 You raise me up to more than I can be
-You raise me up to more than I can be`
+You raise me up to more than I can be`,
+    plays: 0,
+    likes: 0,
+    dislikes: 0,
   },
   {
-    id: 7,
+    id: 8,
     title: "My Love",
     singer: "Westlife",
     lyrics:  `An empty street
@@ -365,10 +431,13 @@ Over seas from coast to coast
 To find the place I love the most
 Where the fields are green
 To see you once again, my love
-`
+`,
+    plays: 0,
+    likes: 0,
+    dislikes: 0,
   },
   {
-    id: 8,
+    id: 9,
     title: "Let It Go",
     singer: "Idina Menzel",
     lyrics:  `The snow glows white on the mountain tonight
@@ -419,10 +488,13 @@ And I'll rise like the break of dawn
 Let it go, let it go
 That perfect girl is gone
 Here I stand in the light of day
-Let the storm rage on`
+Let the storm rage on`,
+    plays: 0,
+    likes: 0,
+    dislikes: 0,
   },
   {
-    id: 9,
+    id: 10,
     title: "The Lazy Song",
     singer: "Bruno Mars",
     lyrics:  `Today I don't feel like doing anything
@@ -484,10 +556,13 @@ Hoo ooh ooh
 Nothing at all
 Ooh hoo ooh hoo
 Hoo ooh ooh
-Nothing at all`
+Nothing at all`,
+    plays: 0,
+    likes: 0,
+    dislikes: 0,
   },
   {
-    id: 10,
+    id: 11,
     title: "My Heart Will Go On",
     singer: "Celine Dion",
     lyrics:  `Every night in my dreams
@@ -514,49 +589,10 @@ And my heart will go on and on
 You're here, there's nothing I fear
 And I know that my heart will go on
 We'll stay forever this way
-You are safe in my heart and my heart will go on and on`
-  },
-  {
-    id: 11,
-    title: "Johnny B. Goode",
-    singer: "Chuck Berry",
-    lyrics:  `Deep down in Louisiana close to New Orleans
-Way back up in the woods among the evergreens
-There stood a log cabin made of earth and wood
-Where lived a country boy named Johnny B. Goode
-Who never ever learned to read or write so well
-But he could play a guitar just like a-ringin' a bell
-Go go
-Go Johnny go go
-Go Johnny go go
-Go Johnny go go
-Go Johnny go go
-Johnny B. Goode
-He used to carry his guitar in a gunny sack
-Go sit beneath the tree by the railroad track
-Oh, the engineers would see him sitting in the shade
-Strumming with the rhythm that the drivers made
-People passing by they would stop and say
-"Oh my what that little country boy could play"
-Go go
-Go Johnny go go
-Go Johnny go go
-Go Johnny go go
-Go Johnny go go
-Johnny B. Goode
-His mother told him "someday you will be a man
-And you will be the leader of a big old band
-Many people coming from miles around
-To hear you play your music when the sun go down
-Maybe someday your name will be in lights
-Saying "Johnny B. Goode tonight"
-Go go
-Go Johnny go
-Go go go Johnny go
-Go go go Johnny go
-Go go go Johnny go
-Go
-Johnny B. Goode`
+You are safe in my heart and my heart will go on and on`,
+    plays: 0,
+    likes: 0,
+    dislikes: 0,
   },
 ];
 
