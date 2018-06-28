@@ -19,7 +19,32 @@ class KaraokeContainer extends Component {
 
   playSong = (id) => {
     const currentSong = this.state.songs.find(song => song.id === id);
-    this.setState({ currentSong });
+    
+    fetch(`http://localhost:4000/songs/${currentSong.id}`,
+      {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...currentSong, plays: currentSong.plays + 1 })
+      }
+    )
+      .then(res => res.json())
+      .then(json => {
+        const songs = this.state.songs.map(song => {
+          if (song.id === json.id) {
+            return json;
+          }
+          return song;
+        });
+
+        // This should act like a real API where we only
+        // start playing after getting a music stream back
+        // from the API. Hence doing the setState for
+        // currentSong here instead of before the patch.
+        this.setState({
+          songs,
+          currentSong: json,
+        });
+      })
   }
 
   updateTitle = (event) => {
