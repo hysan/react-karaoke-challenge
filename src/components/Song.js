@@ -5,6 +5,8 @@ const Song = (props) => {
     <tr className="song">
       <td>{props.title}</td>
       <td>{props.singer}</td>
+      <td>{props.likes}</td>
+      <td>{props.dislikes}</td>
       <td>{props.plays}</td>
       <td><button onClick={props.playSong}>Play</button></td>
     </tr>

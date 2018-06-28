@@ -65,6 +65,44 @@ class KaraokeContainer extends Component {
       })
   }
 
+  likeSong = (id) => {
+    const currentSong = this.state.songs.find(song => song.id === id);
+
+    fetch(`http://localhost:4000/songs/${currentSong.id}`,
+      {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...currentSong, likes: currentSong.likes + 1 })
+      }
+    )
+      .then(res => res.json())
+      .then(json => {
+        // Just like playSong, either refresh the song
+        // or all of the songs.
+        this.loadSongs();
+        // this.getSong(json.id);
+      })
+  }
+
+  dislikeSong = (id) => {
+    const currentSong = this.state.songs.find(song => song.id === id);
+
+    fetch(`http://localhost:4000/songs/${currentSong.id}`,
+      {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...currentSong, dislikes: currentSong.dislikes + 1 })
+      }
+    )
+      .then(res => res.json())
+      .then(json => {
+        // Just like playSong, either refresh the song
+        // or all of the songs.
+        this.loadSongs();
+        // this.getSong(json.id);
+      })
+  }
+
   updateTitle = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
@@ -82,7 +120,11 @@ class KaraokeContainer extends Component {
           <Filter title={this.state.title} handleChange={this.updateTitle} />
           <SongList songs={this.filteredSongs()} playSong={this.playSong} />
         </div>
-        <KaraokeDisplay {...this.state.currentSong} />
+        <KaraokeDisplay
+          {...this.state.currentSong}
+          likeSong={this.likeSong}
+          dislikeSong={this.dislikeSong}
+        />
       </div>
     );
   }

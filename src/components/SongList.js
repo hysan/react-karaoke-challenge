@@ -8,6 +8,8 @@ const SongList = (props) => {
         <tr>
           <th>Title</th>
           <th>Singer</th>
+          <th>Likes</th>
+          <th>Dislikes</th>
           <th>Plays</th>
           <th>▶</th>
         </tr>
@@ -19,6 +21,8 @@ const SongList = (props) => {
               key={song.id}
               title={song.title}
               singer={song.singer}
+              likes={song.likes}
+              dislikes={song.dislikes}
               plays={song.plays}
               playSong={playSong}
             />
