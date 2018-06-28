@@ -40,6 +40,22 @@ URL for database: `http://localhost:4000`
 | `/songs`     | `GET`   | array of songs      |
 | `/songs/:id` | `PATCH` | updated song object |
 
+This `PATCH` call is extremely powerful. You can change anything (please don't!) as the body accepts an object looking like this:
+
+```
+{
+  id,
+  title,
+  singer,
+  lyrics,
+  plays,
+  likes,
+  dislikes
+}
+```
+
+It will update that song with whatever values you provide to it.
+
 ### Deliverables
 
 This is your end goal:
@@ -62,7 +78,8 @@ Being the React master that you are, you noticed some extra data and capabilitie
   - [ ] This data, number of plays, will come from the API. Every time a song is played (clicking `Play`), a `PATCH` should be sent to the database to increment this value for that song.
 - _Likes & Dislikes_
   - [ ] The song list should display two new columns showing the likes/dislikes of a song.
-  - [ ] Refactor and add buttons for liking and disliking the currently playing song above the playing song. A pre-styled component has been provided for you to use:
+  - [ ] Refactor and add buttons for liking and disliking the currently playing song above the playing song. A pre-styled component has been provided for you to use: `VoteBar`
+  - [ ] Clicking like/dislike should send a `PATCH` to the database to increment this value for that song.
 
 Your end result should look like this:
 
@@ -80,7 +97,7 @@ _(Be sure to branch before tackling this!)_
     - [ ] Play the song if no song is playing.
   - [ ] The `Lyrics` component has an `onFinish` prop that takes a function. This function will be called when the currently playing song is finished. Use it to play the next song in the queue if any exists.
 - _Display the Queue_
-  - [ ] Refactor and add the `Nav` component above the title filter.
+  - [ ] Refactor and add the `NavBar` component above the title filter.
   - [ ] Clicking on _Song List_ should show all of the songs.
   - [ ] Clicking on _Queue_ should show the list of queued songs sorted by which will be playing next.
 
