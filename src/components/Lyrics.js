@@ -18,17 +18,11 @@ class Lyrics extends Component {
     super(props);
 
     this.state = {
-      lyrics: this.props.lyrics,
-      lyricsArray: lyricsToArray(this.props.lyrics),
+      lyrics: null,
+      lyricsArray: null,
       currentWord: 0,
       timer: null,
     }
-  }
-
-  componentDidMount() {
-    this.setState({
-      timer: setInterval(this.nextWord, 250),
-    });
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -41,6 +35,12 @@ class Lyrics extends Component {
       }
     }
     return null;
+  }
+
+  componentDidMount() {
+    this.setState({
+      timer: setInterval(this.nextWord, 250),
+    });
   }
 
   shouldComponentUpdate(nextProps, nextState) {
