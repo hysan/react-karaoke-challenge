@@ -55,6 +55,20 @@ It's now up to you to fix the rest of the codebase before the start of Karaoke N
 
 ---
 
+### Suggested Workflow
+
+- Consider each set of deliverables as a milestone. Don't proceed until you've finished the previous set of deliverables:
+  - **Deliverables**
+  - **BONUS**
+  - **SUPER BONUS**
+  - **SUPER DUPER BONUS**
+- Use the fake data in `data/songs.js` first to make sure some of your components work.
+- Then replace the data with the fetched data so you have a way to confirm it.
+- After that, you can tackle the rest of the deliverables.
+- Before each bonus, commit your work and branch!
+
+---
+
 ### Deliverables
 
 This is your end goal:
@@ -128,20 +142,6 @@ Gods are perfect and you notice that your code isn't as clean as it can be. Let'
 Your end result should look like this:
 
 ![result](react-karaoke-challenge-super-duper-bonus.gif)
-
----
-
-### Suggested Workflow
-
-- Consider each set of deliverables as a milestone. Don't proceed until you've finished the previous set of deliverables:
-  - **Deliverables**
-  - **BONUS**
-  - **SUPER BONUS**
-  - **SUPER DUPER BONUS**
-- Use the fake data in `data/songs.js` first to make sure some of your components work.
-- Then replace the data with the fetched data so you have a way to confirm it.
-- After that, you can tackle the rest of the deliverables.
-- Before each bonus, commit your work and branch!
 
 ---
 
