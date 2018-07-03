@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Sidebar from './Sidebar';
 import KaraokeDisplay from '../components/KaraokeDisplay';
-import songs from '../data/songs';
 import Adapter from '../api/Adapter';
 
 class KaraokeContainer extends Component {
