@@ -107,3 +107,15 @@ button.down-button {
 .unhighlighted {
   color: blue;
 }
+
+div.nav-bar {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+div.nav-bar button {
+  flex: 1;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  margin: 0px 5px;
+}
