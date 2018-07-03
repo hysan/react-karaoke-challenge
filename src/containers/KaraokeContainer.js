@@ -31,24 +31,26 @@ class KaraokeContainer extends Component {
   }
 
   playSong = (id) => {
-    const currentSong = this.findSongById(id);
+    if (!this.state.currentSong || this.state.currentSong.id !== id) {
+      const currentSong = this.findSongById(id);
+      
+      Adapter.patchPlaySong(currentSong.id)
+        .then(res => res.json())
+        .then(json => {
+          this.setState({
+            currentSong: json,
+          });
 
-    Adapter.patchPlaySong(currentSong.id)
-      .then(res => res.json())
-      .then(json => {
-        this.setState({
-          currentSong: json,
-        });
+          // If this were a real API, we might want to refetch
+          // everything in case others have updated things.
+          // this.loadSongs();
 
-        // If this were a real API, we might want to refetch
-        // everything in case others have updated things.
-        // this.loadSongs();
-
-        // However, we are not a real API. We are the only
-        // ones ever updating, so we can just update the list
-        // with the returned data.
-        this.updateSong(json);
-      })
+          // However, we are not a real API. We are the only
+          // ones ever updating, so we can just update the list
+          // with the returned data.
+          this.updateSong(json);
+        })
+    }
   }
 
   likeSong = (id) => {
