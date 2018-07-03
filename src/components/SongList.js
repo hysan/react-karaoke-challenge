@@ -9,23 +9,30 @@ const SongList = (props) => {
         <tr>
           <th>Title</th>
           <th>Singer</th>
-          <th>Likes</th>
-          <th>Dislikes</th>
-          <th>Plays</th>
-          <th>▶</th>
+          {
+            props.playSong ?
+              <React.Fragment>
+                <th>Likes</th>
+                <th>Dislikes</th>
+                <th>Plays</th>
+                <th>▶</th>
+              </React.Fragment>
+            :
+              null
+          }
         </tr>
 
         {props.songs.map(song => {
-          const playSong = () => { props.playSong(song.id) };
           return (
             <Song
               key={UUID()}
+              id={song.id}
               title={song.title}
               singer={song.singer}
               likes={song.likes}
               dislikes={song.dislikes}
               plays={song.plays}
-              playSong={playSong}
+              playSong={props.playSong}
             />
           )
         })}
