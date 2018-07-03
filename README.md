@@ -28,33 +28,28 @@ It's now up to you to fix the rest of the codebase before the start of Karaoke N
 
 - Clone this repository in a different directory: `https://github.com/hysan/react-karaoke-challenge-backend`
 - `cd` into it.
-- Run `npm install` to install your dependencies.
-- Run `npm start` and the API will be running on `localhost:4000`.
+- Run `bundle` to install your dependencies.
+- Run `rails db:create && rails db:migrate && rails db:seed` to create and seed your database.
+- Run `rails s -p 4000` and the API will be running on `localhost:4000`.
 
 **Routes**
 
-URL for database: `http://localhost:4000`
+- URL for database: `http://localhost:4000`
+- You will be given a `:user_id`
 
-| route        | method  | returns             |
-| ------------ |:-------:| -------------------:|
-| `/songs`     | `GET`   | array of songs      |
-| `/songs/:id` | `PATCH` | updated song object |
+**Please use your own ID or else you will be editing someone else's data!**
 
-This `PATCH` call is extremely powerful. You can change anything (please don't!) as the body accepts an object looking like this:
+| route                                    | method  | returns                              |
+| ---------------------------------------- |:-------:| ------------------------------------:|
+| `/users/:user_id/songs`                  | `GET`   | array of songs                       |
+| `/users/:user_id/songs/:song_id`         | `GET`   | song object                          |
+| `/users/:user_id/songs/:song_id/play`    | `PATCH` | updated song object (`plays` + 1)    |
+| `/users/:user_id/songs/:song_id/like`    | `PATCH` | updated song object (`likes` + 1)    |
+| `/users/:user_id/songs/:song_id/dislike` | `PATCH` | updated song object (`dislikes` + 1) |
 
-```
-{
-  id,
-  title,
-  singer,
-  lyrics,
-  plays,
-  likes,
-  dislikes
-}
-```
+**Notes**
 
-It will update that song with whatever values you provide to it.
+- None of the `PATCH` calls require a `body`.
 
 ### Deliverables
 
