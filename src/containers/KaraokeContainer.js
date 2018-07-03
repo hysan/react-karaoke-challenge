@@ -34,7 +34,10 @@ class KaraokeContainer extends Component {
   }
 
   playSong = (id) => {
-    if (!this.state.currentSong || this.state.currentSong.id !== id) {
+    if (!this.state.currentSong
+      || this.state.currentSong.id !== id
+      && !this.state.queue.find(song => song.id === id)
+    ) {
       const currentSong = this.findSongById(id);
 
       Adapter.patchPlaySong(currentSong.id)
