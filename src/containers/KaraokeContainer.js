@@ -116,6 +116,20 @@ class KaraokeContainer extends Component {
     })
   }
 
+  popSong = () => {
+    if (this.state.queue.length > 0) {
+      const currentSong = this.state.queue[0];
+      const queue = this.state.queue.slice(1);
+
+      this.setState({
+        currentSong,
+        queue,
+      });
+    } else {
+      this.setState({ currentSong: null });
+    }
+  }
+
   render() {
     return (
       <div className="karaoke-container">
@@ -135,6 +149,7 @@ class KaraokeContainer extends Component {
           {...this.state.currentSong}
           likeSong={this.likeSong}
           dislikeSong={this.dislikeSong}
+          onFinish={this.popSong}
         />
       </div>
     );

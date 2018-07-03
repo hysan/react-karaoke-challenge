@@ -21,7 +21,7 @@ const KaraokeDisplay = (props) => {
           null
       }
       <h2>{props.title}</h2>
-      <Lyrics lyrics={props.lyrics} />
+      <Lyrics lyrics={props.lyrics} onFinish={props.onFinish} />
     </div>
   )
 }
