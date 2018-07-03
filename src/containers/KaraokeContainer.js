@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Filter from '../components/Filter';
 import SongList from '../components/SongList';
 import KaraokeDisplay from '../components/KaraokeDisplay';
+import NavBar from '../components/NavBar';
 import songs from '../data/songs';
 import Adapter from '../api/Adapter';
 
@@ -10,6 +11,8 @@ class KaraokeContainer extends Component {
     songs: [],
     currentSong: null,
     title: "",
+    queue: [],
+    showSongs: true,
   }
 
   componentDidMount() {
@@ -33,13 +36,18 @@ class KaraokeContainer extends Component {
   playSong = (id) => {
     if (!this.state.currentSong || this.state.currentSong.id !== id) {
       const currentSong = this.findSongById(id);
-      
+
       Adapter.patchPlaySong(currentSong.id)
         .then(res => res.json())
         .then(json => {
-          this.setState({
-            currentSong: json,
-          });
+          if (!this.state.currentSong) {
+            this.setState({
+              currentSong: json,
+            });
+          } else {
+            const queue = [...this.state.queue, currentSong];
+            this.setState({ queue }, () => { console.log(this.state.queue) });
+          }
 
           // If this were a real API, we might want to refetch
           // everything in case others have updated things.
@@ -102,12 +110,26 @@ class KaraokeContainer extends Component {
     return this.state.songs.filter(song => song.title.toLowerCase().includes(this.state.title.toLowerCase()));
   }
 
+  toggleSongQueue = () => {
+    this.setState(prevState => {
+      return { showSongs: !prevState.showSongs };
+    })
+  }
+
   render() {
     return (
       <div className="karaoke-container">
         <div className="sidebar">
-          <Filter title={this.state.title} handleChange={this.updateTitle} />
-          <SongList songs={this.filteredSongs()} playSong={this.playSong} />
+          <NavBar showSongs={this.toggleSongQueue} showQueue={this.toggleSongQueue} />
+          {
+            this.state.showSongs ?
+              <React.Fragment>
+                <Filter title={this.state.title} handleChange={this.updateTitle} />
+                <SongList songs={this.filteredSongs()} playSong={this.playSong} />
+              </React.Fragment>
+            :
+              <SongList songs={this.state.queue} />
+          }
         </div>
         <KaraokeDisplay
           {...this.state.currentSong}
