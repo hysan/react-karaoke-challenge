@@ -91,6 +91,7 @@ _(Be sure to branch before tackling this!)_
 - _Add Queuing_
   - [ ] Clicking the `Play` button will no longer play the song right away. Instead, it should:
     - [ ] Add the song to a queue if a song is already playing.
+    - [ ] The same song can be queued multiple times.
     - [ ] Play the song if no song is playing.
   - [ ] The `Lyrics` component has an `onFinish` prop that takes a function. This function will be called when the currently playing song is finished. Use it to play the next song in the queue if any exists.
 - _Display the Queue_
