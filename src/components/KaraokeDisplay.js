@@ -3,7 +3,6 @@ import VoteBar from './VoteBar';
 import Lyrics from './Lyrics';
 
 const KaraokeDisplay = (props) => {
-  console.log(props)
   return (
     <div className="karaoke-display">
       {
