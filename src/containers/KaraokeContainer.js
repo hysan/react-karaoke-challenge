@@ -3,6 +3,7 @@ import Filter from '../components/Filter';
 import SongList from '../components/SongList';
 import KaraokeDisplay from '../components/KaraokeDisplay';
 import songs from '../data/songs';
+import Adapter from '../api/Adapter';
 
 class KaraokeContainer extends Component {
   state = {
@@ -16,91 +17,77 @@ class KaraokeContainer extends Component {
   }
 
   loadSongs = () => {
-    fetch('http://localhost:4000/songs')
+    Adapter.getSongs()
       .then(res => res.json())
       .then(json => this.setState({ songs: json }))
   }
 
   getSong = (id) => {
-    fetch(`http://localhost:4000/songs/${id}`)
+    Adapter.getSong()
       .then(res => res.json())
       .then(json => {
-        const songs = this.state.songs.map(song => {
-          if (song.id === id) {
-            return json;
-          }
-          return song;
-        })
-
-        this.setState({ songs })
+        this.updateSong(json);
       })
   }
 
   playSong = (id) => {
-    const currentSong = this.state.songs.find(song => song.id === id);
+    const currentSong = this.findSongById(id);
 
-    fetch(`http://localhost:4000/songs/${currentSong.id}`,
-      {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...currentSong, plays: currentSong.plays + 1 })
-      }
-    )
+    Adapter.patchPlaySong(currentSong.id)
       .then(res => res.json())
       .then(json => {
-        // This should act like a real API where we only
-        // start playing after getting a music stream back
-        // from the API. Hence doing the setState for
-        // currentSong here instead of before the patch.
         this.setState({
           currentSong: json,
         });
 
-        // If this were a real API, we'd either refetch
-        // all of the songs since other people could be
-        // updating the list, or we'd refetch a single
-        // and update our list.
-        this.loadSongs();
-        // this.getSong(json.id);
+        // If this were a real API, we might want to refetch
+        // everything in case others have updated things.
+        // this.loadSongs();
+
+        // However, we are not a real API. We are the only
+        // ones ever updating, so we can just update the list
+        // with the returned data.
+        this.updateSong(json);
       })
   }
 
   likeSong = (id) => {
-    const currentSong = this.state.songs.find(song => song.id === id);
+    const currentSong = this.findSongById(id);
 
-    fetch(`http://localhost:4000/songs/${currentSong.id}`,
-      {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...currentSong, likes: currentSong.likes + 1 })
-      }
-    )
+    Adapter.patchLikeSong(currentSong.id)
       .then(res => res.json())
       .then(json => {
-        // Just like playSong, either refresh the song
-        // or all of the songs.
-        this.loadSongs();
-        // this.getSong(json.id);
+        // Same reasoning as playSong() above for why
+        // we can update with just the returned data.
+        this.updateSong(json);
       })
   }
 
   dislikeSong = (id) => {
-    const currentSong = this.state.songs.find(song => song.id === id);
+    const currentSong = this.findSongById(id);
 
-    fetch(`http://localhost:4000/songs/${currentSong.id}`,
-      {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...currentSong, dislikes: currentSong.dislikes + 1 })
-      }
-    )
+    Adapter.patchDislikeSong(currentSong.id)
       .then(res => res.json())
       .then(json => {
-        // Just like playSong, either refresh the song
-        // or all of the songs.
-        this.loadSongs();
-        // this.getSong(json.id);
+        // Same reasoning as playSong() above for why
+        // we can update with just the returned data.
+        this.updateSong(json);
       })
+  }
+
+  findSongById = (id) => {
+    return this.state.songs.find(song => song.id === id);
+  }
+
+  updateSong = (newSong) => {
+    const songs = this.state.songs.map(song => {
+      if (song.id === newSong.id) {
+        return newSong;
+      }
+      return song;
+    })
+
+    this.setState({ songs })
   }
 
   updateTitle = (event) => {
