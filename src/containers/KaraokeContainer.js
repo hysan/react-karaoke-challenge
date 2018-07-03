@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import Filter from '../components/Filter';
-import SongList from '../components/SongList';
+import Sidebar from './Sidebar';
 import KaraokeDisplay from '../components/KaraokeDisplay';
-import NavBar from '../components/NavBar';
 import songs from '../data/songs';
 import Adapter from '../api/Adapter';
 
@@ -10,9 +8,7 @@ class KaraokeContainer extends Component {
   state = {
     songs: [],
     currentSong: null,
-    title: "",
     queue: [],
-    showSongs: true,
   }
 
   componentDidMount() {
@@ -103,22 +99,6 @@ class KaraokeContainer extends Component {
     this.setState({ songs })
   }
 
-  updateTitle = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    })
-  }
-
-  filteredSongs = () => {
-    return this.state.songs.filter(song => song.title.toLowerCase().includes(this.state.title.toLowerCase()));
-  }
-
-  toggleSongQueue = () => {
-    this.setState(prevState => {
-      return { showSongs: !prevState.showSongs };
-    })
-  }
-
   popSong = () => {
     if (this.state.queue.length > 0) {
       const currentSong = this.state.queue[0];
@@ -136,18 +116,11 @@ class KaraokeContainer extends Component {
   render() {
     return (
       <div className="karaoke-container">
-        <div className="sidebar">
-          <NavBar showSongs={this.toggleSongQueue} showQueue={this.toggleSongQueue} />
-          {
-            this.state.showSongs ?
-              <React.Fragment>
-                <Filter title={this.state.title} handleChange={this.updateTitle} />
-                <SongList songs={this.filteredSongs()} playSong={this.playSong} />
-              </React.Fragment>
-            :
-              <SongList songs={this.state.queue} />
-          }
-        </div>
+        <Sidebar
+          songs={this.state.songs}
+          playSong={this.playSong}
+          queue={this.state.queue}
+        />
         <KaraokeDisplay
           {...this.state.currentSong}
           likeSong={this.likeSong}
