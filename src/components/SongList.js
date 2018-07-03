@@ -1,5 +1,6 @@
 import React from 'react';
 import Song from './Song';
+import UUID from 'uuid';
 
 const SongList = (props) => {
   return (
@@ -18,7 +19,7 @@ const SongList = (props) => {
           const playSong = () => { props.playSong(song.id) };
           return (
             <Song
-              key={song.id}
+              key={UUID()}
               title={song.title}
               singer={song.singer}
               likes={song.likes}
