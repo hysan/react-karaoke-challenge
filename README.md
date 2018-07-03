@@ -16,6 +16,8 @@ Your future cohort members had to return for fear of running into their present 
 
 It's now up to you to fix the rest of the codebase before the start of Karaoke Night!
 
+---
+
 ### Setup
 
 #### Frontend
@@ -51,6 +53,8 @@ It's now up to you to fix the rest of the codebase before the start of Karaoke N
 
 - None of the `PATCH` calls require a `body`.
 
+---
+
 ### Deliverables
 
 This is your end goal:
@@ -63,6 +67,8 @@ This is your end goal:
 - [ ] The right panel will display the song's title and lyrics.
 - [ ] The song's lyrics should be passed into the `Lyrics` component. You should not be editing this file.
 - [ ] When typing into the input, the list of songs should filter by song name.
+
+---
 
 **BONUS**
 
@@ -81,6 +87,8 @@ Being the React master that you are, you noticed some extra data and capabilitie
 Your end result should look like this:
 
 ![result](react-karaoke-challenge-bonus.gif)
+
+---
 
 **SUPER BONUS!**
 
@@ -106,6 +114,8 @@ Your end result should look like this (`Lyrics` is sped up for this example):
 
 ![result](react-karaoke-challenge-super-bonus.gif)
 
+---
+
 **SUPER DUPER BONUS!**
 
 Gods are perfect and you notice that your code isn't as clean as it can be. Let's make things perfect by _refactoring_:
@@ -119,6 +129,8 @@ Your end result should look like this:
 
 ![result](react-karaoke-challenge-super-duper-bonus.gif)
 
+---
+
 ### Suggested Workflow
 
 - Consider each set of deliverables as a milestone. Don't proceed until you've finished the previous set of deliverables:
@@ -130,6 +142,8 @@ Your end result should look like this:
 - Then replace the data with the fetched data so you have a way to confirm it.
 - After that, you can tackle the rest of the deliverables.
 - Before each bonus, commit your work and branch!
+
+---
 
 ### Criteria
 
