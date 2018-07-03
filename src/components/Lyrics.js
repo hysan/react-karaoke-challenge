@@ -22,25 +22,25 @@ class Lyrics extends Component {
       lyricsArray: null,
       currentWord: 0,
       timer: null,
+      finished: true,
     }
   }
 
   static getDerivedStateFromProps(props, state) {
     if (props.lyrics !== state.lyrics) {
       return {
+        ...state,
         lyrics: props.lyrics,
         lyricsArray: lyricsToArray(props.lyrics),
         currentWord: 0,
-        timer: state.timer,
+        finished: !props.lyrics,
       }
     }
     return null;
   }
 
   componentDidMount() {
-    this.setState({
-      timer: setInterval(this.nextWord, 250),
-    });
+    this.playLyrics();
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -48,15 +48,39 @@ class Lyrics extends Component {
   }
 
   componentWillUnmount() {
+    this.stopTimer();
+  }
+
+  playLyrics = () => {
+    this.setState({
+      timer: setInterval(this.nextWord, this.props.speed),
+    });
+  }
+
+  stopTimer = () => {
     if (this.timer) {
       clearInterval(this.timer);
     }
+  }
+
+  stopLyrics = () => {
+    this.stopTimer();
+    this.setState({
+      timer: null,
+    });
   }
 
   nextWord = () => {
     if (this.state.currentWord <= this.state.lyricsArray.length) {
       this.setState(prevState => {
         return { currentWord: prevState.currentWord + 1 }
+      })
+    } else if (!this.state.finished) {
+      // TODO: figure out how to restart a timer from within a
+      //       static class method: getDerivedStateFromProps.
+      // this.stopLyrics();
+      this.setState({ finished: true }, () => {
+        !!this.props.onFinish && this.props.onFinish();
       })
     }
   }
@@ -83,6 +107,10 @@ class Lyrics extends Component {
       </div>
     );
   }
+}
+
+Lyrics.defaultProps = {
+  speed: 250,
 }
 
 export default Lyrics;
