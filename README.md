@@ -102,9 +102,22 @@ _(Be sure to branch before tackling this!)_
   - [ ] Clicking on _Song List_ should show all of the songs.
   - [ ] Clicking on _Queue_ should show the list of queued songs sorted by which will be playing next.
 
-Your end result should look like this:
+Your end result should look like this (`Lyrics` is sped up for this example):
 
 ![result](react-karaoke-challenge-super-bonus.gif)
+
+**SUPER DUPER BONUS!**
+
+Gods are perfect and you notice that your code isn't as clean as it can be. Let's make things perfect by _refactoring_:
+
+- [ ] The queue should not show the `Likes`, `Dislikes`, `Plays`, and `▶` columns.
+- [ ] Is all of your `state` living in a single place? If so, ask yourself, "Have I lifted too far?" (_hint: you probably have_)
+  - [ ] If you haven't already, refactor `KaraokeContainer` so it has `KaraokeDisplay` and a new container component called `Sidebar`.
+  - [ ] `Sidebar` should contain everything in the left column and should contain only the `state` it needs. Meanwhile, `KaraokeContainer` should contain only the `state` it needs.
+
+Your end result should look like this:
+
+![result](react-karaoke-challenge-super-duper-bonus.gif)
 
 ### Suggested Workflow
 
