@@ -9,10 +9,12 @@ class Sidebar extends Component {
     title: "",
   }
 
-  toggleSongQueue = () => {
-    this.setState(prevState => {
-      return { showSongs: !prevState.showSongs };
-    })
+  showSongs = () => {
+    this.setState({ showSongs: true });
+  }
+
+  showQueue = () => {
+    this.setState({ showSongs: false });
   }
 
   updateTitle = (event) => {
@@ -30,7 +32,7 @@ class Sidebar extends Component {
 
     return (
       <div className="sidebar">
-        <NavBar showSongs={this.toggleSongQueue} showQueue={this.toggleSongQueue} />
+        <NavBar showSongs={this.showSongs} showQueue={this.showQueue} />
         {
           this.state.showSongs ?
             <React.Fragment>
