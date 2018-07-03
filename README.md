@@ -71,6 +71,7 @@ Being the React master that you are, you noticed some extra data and capabilitie
 - _Tracking Plays_
   - [ ] The song list should display a new column with the number of times a song was played.
   - [ ] This data, number of plays, will come from the API. Every time a song is played (clicking `Play`), a `PATCH` should be sent to the database to increment this value for that song.
+  - [ ] If that song is already playing, you should not `PATCH`.
 - _Likes & Dislikes_
   - [ ] The song list should display two new columns showing the likes/dislikes of a song.
   - [ ] Refactor and add buttons for liking and disliking the currently playing song above the playing song. A pre-styled component has been provided for you to use: `VoteBar`
