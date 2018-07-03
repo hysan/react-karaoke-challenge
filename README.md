@@ -121,9 +121,15 @@ Your end result should look like this:
 
 ### Suggested Workflow
 
+- Consider each set of deliverables as a milestone. Don't proceed until you've finished the previous set of deliverables:
+  - **Deliverables**
+  - **BONUS**
+  - **SUPER BONUS**
+  - **SUPER DUPER BONUS**
 - Use the fake data in `data/songs.js` first to make sure some of your components work.
-- Then fetch the data so you have a way to confirm it.
+- Then replace the data with the fetched data so you have a way to confirm it.
 - After that, you can tackle the rest of the deliverables.
+- Before each bonus, commit your work and branch!
 
 ### Criteria
 
