@@ -1,0 +1,5 @@
+1) Render a list of all songs from sample data - container adds songs to state & passes to presenter
+2) Click "Play" to play a song (displays it in the right panel)
+3) Right panel displays title and lyrics (from props)
+4) Lyrics passed into Lyrics component
+5) Filter songs displayed by searchbar (update state based on search term typed - 2nd state container?)
