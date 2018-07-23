@@ -10,16 +10,30 @@ class KaraokeContainer extends Component {
     super(props)
     this.state = {
       songs: [],
+      chosenSong: "",
     }
   }
+
+  handlePlayClick = (event) => {
+    event.persist();
+    const songs = this.state.songs;
+    const chosenSong = songs.find(function(song) {
+      return song.title === event.target.name;
+    })
+    this.setState({
+      chosenSong
+    }, () => console.log(this.state))
+  }
+
+
 
   renderSongs = () => {
     return songs.map(song => {
       return (
-        <tr key={UUID()}>
+        <tr key={UUID()} >
           <td>{song.title}</td>
           <td>{song.singer}</td>
-          <td><button>Play</button></td>
+          <td><button name={song.title} onClick={this.handlePlayClick}>Play</button></td>
         </tr>
       )
     })
@@ -40,7 +54,7 @@ class KaraokeContainer extends Component {
           <Filter />
           <SongList renderSongs={this.renderSongs}/>
         </div>
-        <KaraokeDisplay />
+        <KaraokeDisplay chosenSong={this.state.chosenSong}/>
       </div>
     );
   }
