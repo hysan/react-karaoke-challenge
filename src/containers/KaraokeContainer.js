@@ -16,14 +16,18 @@ class KaraokeContainer extends Component {
     }
   }
 
-  filterSong = (query) => {
-    let filteredSongList = this.state.songList.slice().filter(individualSong => individualSong.includes(query))
-    this.setState({currentSongList: filteredSongList})
-  }
+
 
   onNewQuery = (event) => {
     this.setState({query: event.target.value})
-    this.filterSong(this.state.query)
+    console.log("current query", this.state.query)
+    this.filterSong();
+  }
+
+  filterSong = () => {
+    let filteredSongList = this.state.songList.slice().filter(individualSong =>
+    individualSong.includes(this.state.query))
+    this.setState({currentSongList: filteredSongList});
   }
 
 
@@ -37,7 +41,6 @@ class KaraokeContainer extends Component {
   }
 
   render() {
-    console.log("current song list", this.state.currentSongList)
     return (
       <div className="karaoke-container">
         <div className="sidebar">
