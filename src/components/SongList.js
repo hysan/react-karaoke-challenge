@@ -1,6 +1,10 @@
 import React from 'react';
+import UUID from 'uuid';
+import songs from '../data/songs';
+
 
 const SongList = () => {
+
   return (
     <table className="song-list">
       <tbody>
@@ -10,8 +14,13 @@ const SongList = () => {
           <th>▶</th>
         </tr>
 
-        {/* Your Code Goes Here */}
-        
+        {songs.map((individualSong) =>
+        <tr>
+          <th>{individualSong.title}</th>
+          <th>{individualSong.singer}</th>
+          <th>▶</th>
+        </tr>)}
+
       </tbody>
     </table>
   )
