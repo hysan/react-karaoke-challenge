@@ -9,8 +9,21 @@ class KaraokeContainer extends Component {
     super(props);
 
     this.state = {
-      currentSong: ""
+      query: "",
+      currentSong: "",
+      songList: songs,
+      currentSongList: ["placeholder"]
     }
+  }
+
+  onNewQuery = (event) => {
+    this.setState({query: event.target.value})
+    console.log("Current search query", this.state.query)
+  }
+
+  filterSong = (query) => {
+    let filteredSongList = this.state.songList.slice().filter(individualSong => individualSong.includes(query))
+    this.setState({currentSongList: filteredSongList})
   }
 
   chooseCurrentSong = (event) => {
@@ -22,12 +35,11 @@ class KaraokeContainer extends Component {
   }
 
   render() {
-    console.log("Big container current song:", this.state.currentSong.title)
     return (
       <div className="karaoke-container">
         <div className="sidebar">
-          <Filter />
-          <SongList chooseCurrentSong={this.chooseCurrentSong}/>
+          <Filter query={this.state.query} onNewQuery={this.onNewQuery}/>
+          <SongList currentSongList={this.state.currentSongList} chooseCurrentSong={this.chooseCurrentSong}/>
         </div>
         <KaraokeDisplay currentSong={this.state.currentSong}/>
       </div>

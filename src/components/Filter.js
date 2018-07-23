@@ -4,12 +4,7 @@ class Filter extends Component {
   constructor(props){
     super(props);
 
-    this.state = { query: "" }
-  }
-
-  onNewQuery = (event) => {
-    this.setState({query: event.target.value})
-    console.log("Current search query", this.state.query)
+    this.state = { key: "value" }
   }
 
   render() {
@@ -19,8 +14,8 @@ class Filter extends Component {
         <input
           id="title-filter"
           type="text"
-          value={this.state.query}
-          onChange={this.onNewQuery}
+          value={this.props.query}
+          onChange={this.props.onNewQuery}
           />
       </div>
     );
