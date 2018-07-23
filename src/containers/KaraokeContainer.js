@@ -10,6 +10,7 @@ class KaraokeContainer extends Component {
     super(props)
     this.state = {
       songs: [],
+      filteredSongs: songs,
       chosenSong: "",
     }
   }
@@ -28,7 +29,7 @@ class KaraokeContainer extends Component {
 
 
   renderSongs = () => {
-    return songs.map(song => {
+    return this.state.filteredSongs.map(song => {
       return (
         <tr key={UUID()} >
           <td>{song.title}</td>
@@ -36,6 +37,16 @@ class KaraokeContainer extends Component {
           <td><button name={song.title} onClick={this.handlePlayClick}>Play</button></td>
         </tr>
       )
+    })
+  }
+
+  filterSongs = (searchInput) => {
+    const songs = this.state.songs
+    const searchResults = songs.filter(song => (
+      song.title.toLowerCase().includes(searchInput)
+    ))
+    this.setState({
+      filteredSongs: searchResults,
     })
   }
 
@@ -51,7 +62,7 @@ class KaraokeContainer extends Component {
     return (
       <div className="karaoke-container">
         <div className="sidebar">
-          <Filter />
+          <Filter filterSongs={this.filterSongs}/>
           <SongList renderSongs={this.renderSongs}/>
         </div>
         <KaraokeDisplay chosenSong={this.state.chosenSong}/>
