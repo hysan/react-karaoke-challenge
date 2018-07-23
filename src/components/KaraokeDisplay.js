@@ -1,11 +1,12 @@
 import React from 'react';
 import Lyrics from './Lyrics';
 
-const KaraokeDisplay = () => {
+const KaraokeDisplay = (props) => {
+  console.log("Karaoke display", props.currentSong)
   return (
     <div className="karaoke-display">
-      <h2>Song Title</h2>
-      <Lyrics lyrics="example song lyrics" />
+      <h2>{props.currentSong.title}</h2>
+      <Lyrics lyrics={props.currentSong.lyrics} />
     </div>
   )
 }

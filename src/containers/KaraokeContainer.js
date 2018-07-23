@@ -14,17 +14,22 @@ class KaraokeContainer extends Component {
   }
 
   chooseCurrentSong = (event) => {
-    console.log("button clicked");
+    event.persist()
+    let userSelection = songs.find(function(individualSong){
+      return (individualSong.title === (event.target.innerText));
+    })
+    this.setState({currentSong: userSelection})
   }
 
   render() {
+    console.log("Big container current song:", this.state.currentSong.title)
     return (
       <div className="karaoke-container">
         <div className="sidebar">
           <Filter />
           <SongList chooseCurrentSong={this.chooseCurrentSong}/>
         </div>
-        <KaraokeDisplay />
+        <KaraokeDisplay currentSong={this.state.currentSong}/>
       </div>
     );
   }
