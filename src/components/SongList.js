@@ -1,6 +1,7 @@
 import React from 'react';
+import Song from './Song';
 
-const SongList = () => {
+const SongList = props => {
   return (
     <table className="song-list">
       <tbody>
@@ -9,12 +10,10 @@ const SongList = () => {
           <th>Singer</th>
           <th>▶</th>
         </tr>
-
-        {/* Your Code Goes Here */}
-        
+        {props.songs.map(song => Song(song, props.playHandle))}
       </tbody>
     </table>
-  )
-}
+  );
+};
 
 export default SongList;
