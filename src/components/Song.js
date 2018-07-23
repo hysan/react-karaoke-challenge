@@ -1,11 +1,18 @@
 import React from 'react';
 
-const Song = () => {
+
+
+function handleClickedSong(event, selectedSong) {
+  let clickedSong = event.target.value.id
+}
+
+const Song = ({song}) => {
+
   return (
-    <tr className="song">
-      <td>title</td>
-      <td>singer</td>
-      <td><button>Play</button></td>
+    <tr id={song.id} className="song">
+      <td>{song.title}</td>
+      <td>{song.singer}</td>
+      <td><button >Play</button></td>
     </tr>
   )
 }
