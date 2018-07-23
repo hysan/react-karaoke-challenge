@@ -27,9 +27,7 @@ class KaraokeContainer extends Component {
   }
 
   incrementPlaysCount = (songId) => {
-    console.log("This is the ID", songId); 
-    debugger; 
-    if (this.state.currentSongs[songId].title !== this.state.songCurrentlyPlaying.title) {
+    if (this.state.currentSongs[songId].id !== this.state.songCurrentlyPlaying.id) {
       const patchPlaysUrl = URL + '/' + this.state.currentSongs[songId].id + '/play';
       fetch(patchPlaysUrl, {
         method: "PATCH"
