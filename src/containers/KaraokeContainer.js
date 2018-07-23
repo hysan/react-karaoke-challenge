@@ -13,7 +13,8 @@ class KaraokeContainer extends Component {
     this.state = {
       allSongs: [],
       currentSongs: [],
-      songCurrentlyPlaying: {}
+      songCurrentlyPlaying: {},
+      currentTitleSearched: ""
     };
   }
 
@@ -32,10 +33,42 @@ class KaraokeContainer extends Component {
       const patchPlaysUrl = URL + '/' + this.state.currentSongs[songId].id + '/play';
       fetch(patchPlaysUrl, {
         method: "PATCH"
-      }) 
+      }).then( resp => this.updateCurrentSongs())
     } else {
       console.log("This song is already playing!")
     }
+  }
+
+  updateCurrentSongs() {
+    let prevCurrentSongs = this.state.currentSongs; 
+    fetch(URL).then( resp => resp.json()).then( songsJson => this.setState({
+      allSongs: songsJson
+    })).then( songs => {
+      let filteredSongList = this.state.allSongs.filter( (song) => {
+        return song.title.toLowerCase().includes(this.state.currentTitleSearched.toLowerCase())
+      });
+      this.setState({
+        currentSongs: filteredSongList
+      })
+    })
+
+
+  }
+
+  incrementDislikesCount = () => {
+    const patchDislikesUrl = URL + '/' + this.state.songCurrentlyPlaying.id + '/dislike';
+    fetch(patchDislikesUrl, {
+      method: "PATCH"
+    }).then( resp => this.updateCurrentSongs())
+    console.log("We're incrementing the dislikes!")
+  }
+
+  incrementLikesCount = () => {
+    const patchLikesUrl = URL + '/' + this.state.songCurrentlyPlaying.id + '/like';
+    fetch(patchLikesUrl, {
+      method: "PATCH"
+    }).then( resp => this.updateCurrentSongs())
+    console.log("We're incrementing the likes!")
   }
 
   filterSongsBySearch = (event) => {
@@ -44,7 +77,8 @@ class KaraokeContainer extends Component {
     })
 
     this.setState({
-      currentSongs: filteredSongList
+      currentSongs: filteredSongList,
+      currentTitleSearched: event.target.value
     })
   }
 
@@ -62,7 +96,7 @@ class KaraokeContainer extends Component {
           <Filter onChange={this.filterSongsBySearch}/>
           <SongList songs={this.state.currentSongs} onPlayClick={this.playSelectedSong}/>
         </div>
-        <KaraokeDisplay song={this.state.songCurrentlyPlaying}/>
+        <KaraokeDisplay song={this.state.songCurrentlyPlaying} upVote={this.incrementLikesCount} downVote={this.incrementDislikesCount}/>
       </div>
     );
   }
