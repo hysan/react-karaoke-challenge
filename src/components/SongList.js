@@ -11,6 +11,7 @@ const SongList = (props) => {
           <th>Title</th>
           <th>Singer</th>
           <th>▶</th>
+          <th>Times Played</th>
         </tr>
 
         {/* Your Code Goes Here */}

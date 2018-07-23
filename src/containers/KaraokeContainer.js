@@ -26,8 +26,6 @@ class KaraokeContainer extends Component {
     }, () => console.log(this.state))
   }
 
-
-
   renderSongs = () => {
     return this.state.filteredSongs.map(song => {
       return (
