@@ -93,10 +93,10 @@ Being the React master that you are, you noticed some extra data and capabilitie
   - [ ] This data, number of plays, will come from the API. Every time a song is played (clicking `Play`), a `PATCH` should be sent to the database to increment this value for that song.
   - [ ] If that song is already playing, you should not `PATCH`. -->
 - _Likes & Dislikes_
-  - [ ] The song list should display two new columns showing the likes/dislikes of a song.
+  <!-- - [ ] The song list should display two new columns showing the likes/dislikes of a song.
   - [ ] Refactor and add buttons for liking and disliking the currently playing song above the playing song. A pre-styled component has been provided for you to use: `VoteBar`
   - [ ] The `VoteBar` should be conditionally rendered. It should not appear when a song is not playing.
-  - [ ] Clicking like/dislike should send a `PATCH` to the database to increment this value for that song.
+  - [ ] Clicking like/dislike should send a `PATCH` to the database to increment this value for that song. -->
 
 Your end result should look like this:
 

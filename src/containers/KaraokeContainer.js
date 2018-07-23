@@ -20,16 +20,16 @@ class KaraokeContainer extends Component {
 
   playSelectedSong = (event, songId) => {
     const selectedSong = this.state.currentSongs[songId];
-    console.log("Song ID:", songId);
     this.incrementPlaysCount(songId);
-
     this.setState({
       songCurrentlyPlaying: selectedSong
     })
   }
 
   incrementPlaysCount = (songId) => {
-    if (this.state.currentSongs[songId] !== this.state.songCurrentlyPlaying) {
+    console.log("This is the ID", songId); 
+    debugger; 
+    if (this.state.currentSongs[songId].title !== this.state.songCurrentlyPlaying.title) {
       const patchPlaysUrl = URL + '/' + this.state.currentSongs[songId].id + '/play';
       fetch(patchPlaysUrl, {
         method: "PATCH"
@@ -39,7 +39,7 @@ class KaraokeContainer extends Component {
     }
   }
 
-  updateCurrentSongs() {
+  updateCurrentSongs = () => {
     let prevCurrentSongs = this.state.currentSongs; 
     fetch(URL).then( resp => resp.json()).then( songsJson => this.setState({
       allSongs: songsJson
