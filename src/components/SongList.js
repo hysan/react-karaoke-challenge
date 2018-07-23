@@ -1,6 +1,16 @@
 import React from 'react';
+import Song from './Song'
+import uuid from 'uuid';
 
-const SongList = () => {
+const songGenerator = (songs,play) => {
+  return songs.map(song => {
+    return (
+      <Song song={song} play={play} key={uuid()}/>
+    )
+  })
+}
+
+const SongList = (props) => {
   return (
     <table className="song-list">
       <tbody>
@@ -10,8 +20,8 @@ const SongList = () => {
           <th>▶</th>
         </tr>
 
-        {/* Your Code Goes Here */}
-        
+        {songGenerator(props.songs,props.play)}        
+
       </tbody>
     </table>
   )
