@@ -19,6 +19,9 @@ class KaraokeContainer extends Component {
     )
   }
 
+  selectedSong(song) {
+    this.setNewState("selectedSong", song)
+  }
 
 
   render() {
@@ -28,6 +31,7 @@ class KaraokeContainer extends Component {
           <Filter />
           <SongList 
             songs={this.state.songs}
+            selectedSong={(passedSong) => this.selectedSong(passedSong)}
           />
         </div>
         <KaraokeDisplay song={this.state.selectedSong}/>

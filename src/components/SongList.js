@@ -5,7 +5,6 @@ import UUID from 'uuid'
 import Song from "./Song" 
 
 const SongList = (props) => {
-  
 
   function buildList() {
     return props.songs.map( function(song) {
@@ -13,11 +12,13 @@ const SongList = (props) => {
         <Fragment key={UUID()}>
           <Song 
             song={song}
+            selectedSong={(passedSong) => props.selectedSong(passedSong)}
           />
         </Fragment>
       )
     })
   }
+
 
   return (
     <table className="song-list">

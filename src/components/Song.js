@@ -5,7 +5,7 @@ const Song = (props) => {
     <tr className="song">
       <td>{props.song.title}</td>
       <td>{props.song.singer}</td>
-      <td><button onClick={()=>console.log("hi")}>Play</button></td>
+      <td><button onClick={()=>props.selectedSong(props.song)}>Play</button></td>
     </tr>
   )
 }
