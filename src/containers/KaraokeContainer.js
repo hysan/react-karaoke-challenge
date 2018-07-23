@@ -2,17 +2,23 @@ import React, { Component } from 'react';
 import Filter from '../components/Filter';
 import SongList from '../components/SongList';
 import KaraokeDisplay from '../components/KaraokeDisplay';
-import songs from '../data/songs';
 
 class KaraokeContainer extends Component {
   constructor(props) {
     super(props);
+
+    //initial state
     this.state = {
       searchValue: "",
-      songs: songs,
+      songs: [],
       clickedPlay: false,
       playSong: {}
     };
+
+    //load songs from API
+    fetch("http://localhost:4000/songs").then(request => request.json()).then(json => this.setState({
+      songs: json,
+    }));
   }
 
   handleKeyUp = (event) => {
