@@ -1,6 +1,15 @@
 import React from 'react';
 
-const SongList = () => {
+const SongList = (props) => {
+
+  const renderSongs = () => {
+    let renderedSongs = []
+    props.songs.forEach(song => {
+      renderedSongs.push(<tr><td>{song.title}</td><td>{song.singer}</td><td><button onClick={(event) => props.onClick(event, song)}>Play</button></td></tr>)
+    })
+    return renderedSongs
+  }
+
   return (
     <table className="song-list">
       <tbody>
@@ -9,9 +18,7 @@ const SongList = () => {
           <th>Singer</th>
           <th>▶</th>
         </tr>
-
-        {/* Your Code Goes Here */}
-        
+        {renderSongs()}
       </tbody>
     </table>
   )
