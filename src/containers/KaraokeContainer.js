@@ -6,16 +6,23 @@ import songs from '../data/songs';
 
 class KaraokeContainer extends Component {
   constructor(props){
-    super(props)
+    super(props);
+
+    this.state = {
+      currentSong: ""
+    }
   }
 
+  chooseCurrentSong = (event) => {
+    console.log("button clicked");
+  }
 
   render() {
     return (
       <div className="karaoke-container">
         <div className="sidebar">
           <Filter />
-          <SongList />
+          <SongList chooseCurrentSong={this.chooseCurrentSong}/>
         </div>
         <KaraokeDisplay />
       </div>

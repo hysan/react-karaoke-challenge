@@ -3,7 +3,7 @@ import UUID from 'uuid';
 import songs from '../data/songs';
 
 
-const SongList = () => {
+const SongList = (props) => {
 
   return (
     <table className="song-list">
@@ -15,7 +15,8 @@ const SongList = () => {
         </tr>
 
         {songs.map((individualSong) =>
-        <tr>
+        <tr key={UUID()}
+        onClick={props.chooseCurrentSong}>
           <th>{individualSong.title}</th>
           <th>{individualSong.singer}</th>
           <th>▶</th>
