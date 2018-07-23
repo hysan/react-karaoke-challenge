@@ -24,10 +24,14 @@ class KaraokeContainer extends Component {
   }
 
   filterSongsBySearch = (event) => {
-    let filteredList = this.state.allSongs.filter( (song) => {
+    let filteredSongList = this.state.allSongs.filter( (song) => {
       return song.title.toLowerCase().includes(event.target.value.toLowerCase())
     })
-    console.log(filteredList);
+
+    this.setState({
+      currentSongs: filteredSongList
+    })
+    console.log(filteredSongList);
 
     console.log(event.target.value);
   }
