@@ -10,14 +10,30 @@ class KaraokeContainer extends Component {
     this.state = {
       songId: null,
       titleFilter: null,
+      songsAll: null,
+      songsFiltered: null,
+      songsToPlay: songs
     };
   }
+
+  // componentDidMount() {
+  //   fetch("http://localhost:4000/users/7/songs")
+  //     .then(result => result.json())
+  //     .then(json => {
+  //       console.log(json)
+  //     })
+  //   }
 
   onChange = (event) => {
     event.preventDefault()
     console.log("title filter = ", event.target.value)
-  
 
+    // let newArray = this.state.songsAll.filter((song) => song.name.includes(event.target.value))
+    //
+    // this.setState({
+    //   songsToPlay: newArray,
+    //   titleFilter: event.target.value,
+    // })
 
 
   }
@@ -49,7 +65,7 @@ class KaraokeContainer extends Component {
       <div className="karaoke-container">
         <div className="sidebar">
           <Filter onChange={this.onChange}/>
-          <SongList songs={songs} playSong={this.playSong}/>
+          <SongList songs={this.state.songsToPlay} playSong={this.playSong}/>
         </div>
         {this.renderKaraokeDisplay()}
       </div>
