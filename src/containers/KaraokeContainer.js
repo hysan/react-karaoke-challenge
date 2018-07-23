@@ -10,7 +10,7 @@ class KaraokeContainer extends Component {
       <div className="karaoke-container">
         <div className="sidebar">
           <Filter />
-          <SongList />
+          <SongList songs={songs}/>
         </div>
         <KaraokeDisplay />
       </div>
