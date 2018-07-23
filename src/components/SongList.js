@@ -5,12 +5,15 @@ import UUID from 'uuid'
 import Song from "./Song" 
 
 const SongList = (props) => {
+  
 
   function buildList() {
     return props.songs.map( function(song) {
       return (
         <Fragment key={UUID()}>
-          <Song song={song}/>
+          <Song 
+            song={song}
+          />
         </Fragment>
       )
     })
