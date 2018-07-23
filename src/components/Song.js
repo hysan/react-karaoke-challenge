@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Song = ({title, singer, onPlayClick, idx}) => {
-  console.log("Keys:", idx); 
   return (
     <tr className="song" key={idx}>
       <td>{title}</td>

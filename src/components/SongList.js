@@ -2,7 +2,6 @@ import React from 'react';
 import Song from './Song'; 
 
 const SongList = ({songs, onPlayClick}) => {
-  console.log("All Songs:", songs)
 
   const renderAllSongs = () => {
     let counter = 0; 

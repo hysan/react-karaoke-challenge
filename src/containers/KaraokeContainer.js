@@ -9,30 +9,41 @@ class KaraokeContainer extends Component {
     super(); 
 
     this.state = {
+      allSongs: [],
       currentSongs: [],
       songCurrentlyPlaying: {}
     };
   }
 
   playSelectedSong = (event, idx) => {
-    console.log("Did we hit the index?", idx)
-    debugger; 
+    const selectedSong = this.state.currentSongs[idx];
+    console.log("Selected song: ", selectedSong); 
+    this.setState({
+      songCurrentlyPlaying: selectedSong
+    })
+  }
+
+  filterSongsBySearch = (event) => {
+    let filteredList = this.state.allSongs.filter( (song) => {
+      return song.title.toLowerCase().includes(event.target.value.toLowerCase())
+    })
+    console.log(filteredList);
+
+    console.log(event.target.value);
   }
 
   componentDidMount() {
     this.setState({
+      allSongs: songs,
       currentSongs: songs
     })
   }
 
-  componentDidUpdate() {
-    console.log("currentSongs:", this.state.currentSongs)
-  }
   render() {
     return (
       <div className="karaoke-container">
         <div className="sidebar">
-          <Filter />
+          <Filter onChange={this.filterSongsBySearch}/>
           <SongList songs={this.state.currentSongs} onPlayClick={this.playSelectedSong}/>
         </div>
         <KaraokeDisplay song={this.state.songCurrentlyPlaying}/>

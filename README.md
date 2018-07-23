@@ -77,9 +77,9 @@ This is your end goal:
 
 <!-- - [ ] Display a list of songs with their artist in the left sidebar. -->
 - [ ] The list of songs will come from `http://localhost:4000`.
-- [ ] Clicking the `Play` button, located next to each song, will load the song in the right panel.
-- [ ] The right panel will display the song's title and lyrics.
-- [ ] The song's lyrics should be passed into the `Lyrics` component. You should not be editing this file.
+<!-- - [ ] Clicking the `Play` button, located next to each song, will load the song in the right panel. -->
+<!-- - [ ] The right panel will display the song's title and lyrics. -->
+<!-- - [ ] The song's lyrics should be passed into the `Lyrics` component. You should not be editing this file. -->
 - [ ] When typing into the input, the list of songs should filter by song name.
 
 ---
