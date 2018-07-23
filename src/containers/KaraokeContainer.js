@@ -30,25 +30,24 @@ class KaraokeContainer extends Component {
   }
 
   playHandle = event => {
-    let name = event.target.dataset.name;
-    this.setState(
-      {
-        songPlaying: name
-      },
-      () => console.log(this.state)
-    );
+    let id = event.target.dataset.id;
+    this.setState({
+      songPlaying: id
+    });
+    fetch(`https://demo.lovescomputers.com/users/3/songs/${id}/play`, {
+      method: 'PATCH'
+    });
   };
 
   filterHandle = event => {
     console.log(event.target.value);
     this.setState(
-      Object.assign({}, this.state, { searchFilter: event.target.value }),
-      () => console.log(this.state)
+      Object.assign({}, this.state, { searchFilter: event.target.value })
     );
   };
 
   songFinder = songs =>
-    songs.filter(song => song.title === this.state.songPlaying)[0];
+    songs.filter(song => song.id === parseInt(this.state.songPlaying))[0];
 
   render() {
     if (this.state.songs) {

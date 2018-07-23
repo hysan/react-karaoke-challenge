@@ -5,8 +5,11 @@ const Song = (props, playHandle) => {
     <tr className="song">
       <td>{props.title}</td>
       <td>{props.singer}</td>
+      <td>{props.likes}</td>
+      <td>{props.dislikes}</td>
+      <td>{props.plays}</td>
       <td>
-        <button data-name={props.title} onClick={event => playHandle(event)}>
+        <button data-id={props.id} onClick={event => playHandle(event)}>
           Play
         </button>
       </td>
