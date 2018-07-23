@@ -10,7 +10,11 @@ const SongList = props => {
           <th>Singer</th>
           <th>▶</th>
         </tr>
-        {props.songs.map(song => Song(song, props.playHandle))}
+        {props.songs
+          .filter(song =>
+            song.title.toLowerCase().includes(props.searchFilter.toLowerCase())
+          )
+          .map(song => Song(song, props.playHandle))}
       </tbody>
     </table>
   );

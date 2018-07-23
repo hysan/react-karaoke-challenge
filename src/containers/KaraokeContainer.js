@@ -7,7 +7,8 @@ import KaraokeDisplay from '../components/KaraokeDisplay';
 class KaraokeContainer extends Component {
   state = {
     songPlaying: null,
-    songs: null
+    songs: null,
+    searchFilter: ''
   };
 
   fetchSongs = () => {
@@ -38,6 +39,14 @@ class KaraokeContainer extends Component {
     );
   };
 
+  filterHandle = event => {
+    console.log(event.target.value);
+    this.setState(
+      Object.assign({}, this.state, { searchFilter: event.target.value }),
+      () => console.log(this.state)
+    );
+  };
+
   songFinder = songs =>
     songs.filter(song => song.title === this.state.songPlaying)[0];
 
@@ -46,8 +55,12 @@ class KaraokeContainer extends Component {
       return (
         <div className="karaoke-container">
           <div className="sidebar">
-            <Filter />
-            <SongList playHandle={this.playHandle} songs={this.state.songs} />
+            <Filter filterHandle={this.filterHandle} />
+            <SongList
+              playHandle={this.playHandle}
+              songs={this.state.songs}
+              searchFilter={this.state.searchFilter}
+            />
           </div>
           <KaraokeDisplay currentSong={this.songFinder(this.state.songs)} />
         </div>
