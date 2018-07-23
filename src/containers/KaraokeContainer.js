@@ -4,6 +4,9 @@ import SongList from '../components/SongList';
 import KaraokeDisplay from '../components/KaraokeDisplay';
 import songs from '../data/songs';
 
+const FETCH_SONGS_URL = "https://demo.lovescomputers.com/users/5/songs"
+
+
 class KaraokeContainer extends Component {
   constructor() {
     super(); 
@@ -15,12 +18,22 @@ class KaraokeContainer extends Component {
     };
   }
 
-  playSelectedSong = (event, idx) => {
-    const selectedSong = this.state.currentSongs[idx];
-    console.log("Selected song: ", selectedSong); 
+  playSelectedSong = (event, songId) => {
+    const selectedSong = this.state.currentSongs[songId];
+    console.log("Song ID:", songId);
+    this.incrementPlaysCount(songId);
+
     this.setState({
       songCurrentlyPlaying: selectedSong
     })
+  }
+
+  incrementPlaysCount = (songId) => {
+    if (this.state.currentSongs[songId] === this.state.songCurrentlyPlaying) {
+      
+    } else {
+      console.log("This isn't the song that's playing right now!")
+    }
   }
 
   filterSongsBySearch = (event) => {
@@ -31,16 +44,13 @@ class KaraokeContainer extends Component {
     this.setState({
       currentSongs: filteredSongList
     })
-    console.log(filteredSongList);
-
-    console.log(event.target.value);
   }
 
   componentDidMount() {
-    this.setState({
-      allSongs: songs,
-      currentSongs: songs
-    })
+    fetch(FETCH_SONGS_URL).then( resp => resp.json()).then( songsJson => this.setState({
+      allSongs: songsJson,
+      currentSongs: songsJson
+    })); 
   }
 
   render() {

@@ -5,7 +5,7 @@ const SongList = ({songs, onPlayClick}) => {
 
   const renderAllSongs = () => {
     let counter = 0; 
-    return songs.map( song => <Song title={song.title} singer={song.singer} onPlayClick={onPlayClick} idx={counter} key={counter++}/>)
+    return songs.map( song => <Song song={song} onPlayClick={onPlayClick} idx={counter} key={counter++}/>)
   }
 
   return (
@@ -14,6 +14,7 @@ const SongList = ({songs, onPlayClick}) => {
         <tr>
           <th>Title</th>
           <th>Singer</th>
+          <th>Plays</th>
           <th>▶</th>
         </tr>
         {renderAllSongs()}
