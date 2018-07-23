@@ -75,7 +75,7 @@ This is your end goal:
 
 ![result](react-karaoke-challenge.gif)
 
-- [ ] Display a list of songs with their artist in the left sidebar.
+<!-- - [ ] Display a list of songs with their artist in the left sidebar. -->
 - [ ] The list of songs will come from `http://localhost:4000`.
 - [ ] Clicking the `Play` button, located next to each song, will load the song in the right panel.
 - [ ] The right panel will display the song's title and lyrics.

@@ -1,11 +1,12 @@
 import React from 'react';
 import Song from './Song'; 
 
-const SongList = ({songs}) => {
+const SongList = ({songs, onPlayClick}) => {
   console.log("All Songs:", songs)
 
   const renderAllSongs = () => {
-    return songs.map( song => <Song title={song.title} singer={song.singer}/>)
+    let counter = 0; 
+    return songs.map( song => <Song title={song.title} singer={song.singer} onPlayClick={onPlayClick} idx={counter} key={counter++}/>)
   }
 
   return (

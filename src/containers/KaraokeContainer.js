@@ -9,8 +9,14 @@ class KaraokeContainer extends Component {
     super(); 
 
     this.state = {
-      currentSongs: []
+      currentSongs: [],
+      songCurrentlyPlaying: {}
     };
+  }
+
+  playSelectedSong = (event, idx) => {
+    console.log("Did we hit the index?", idx)
+    debugger; 
   }
 
   componentDidMount() {
@@ -27,9 +33,9 @@ class KaraokeContainer extends Component {
       <div className="karaoke-container">
         <div className="sidebar">
           <Filter />
-          <SongList songs={this.state.currentSongs}/>
+          <SongList songs={this.state.currentSongs} onPlayClick={this.playSelectedSong}/>
         </div>
-        <KaraokeDisplay />
+        <KaraokeDisplay song={this.state.songCurrentlyPlaying}/>
       </div>
     );
   }
