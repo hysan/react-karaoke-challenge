@@ -1,11 +1,12 @@
 import React from 'react';
+import Song from './Song';
 
 const SongList = (props) => {
 
   const renderSongs = () => {
     let renderedSongs = []
     props.songs.forEach(song => {
-      renderedSongs.push(<tr><td>{song.title}</td><td>{song.singer}</td><td><button onClick={(event) => props.onClick(event, song)}>Play</button></td></tr>)
+      renderedSongs.push(<Song title={song.title} singer={song.singer} onClick={props.onClick} song={song}/>)
     })
     return renderedSongs
   }
