@@ -9,7 +9,7 @@ class KaraokeContainer extends Component {
     super(props);
     //set initial state of empty array of songs, blank search value, play false and empty (to be filled with lyrics later)
     this.state = {
-      songs: [],
+      songs: songs,
       searchValue: "",
       playSong: {},
       clickedPlay: false
@@ -17,6 +17,7 @@ class KaraokeContainer extends Component {
 
 
   // API not working, have to use local file
+  //should be in componentDidMount()
     // fetch("https://demo.lovescomputers.com/songs")
     //   .then(request => request.json())
     //   .then(json => this.setState({
@@ -24,11 +25,11 @@ class KaraokeContainer extends Component {
     // }));
 
 //cant get this to work either
-    fetch('../data/songs')
-      .then(request => request.json())
-      .then(json => this.setState({
-      songs: json,
-    }));
+  // componentDidMount() {
+  //   this.setState({
+  //     songs: songs,
+  //   })
+  // }
 
 
   }
