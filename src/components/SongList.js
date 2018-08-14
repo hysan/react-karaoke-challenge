@@ -7,7 +7,7 @@ const SongList = (props) => {
 
   const mapSongs = () => {
     return props.playList.map(
-      (songObj) => {return <Song key={songObj.id} title={songObj.title} singer={songObj.singer}/>}
+      (songObj) => {return <Song key={songObj.id} song={songObj} title={songObj.title} singer={songObj.singer} clickPlay={props.clickPlay}/>}
     )
   }
 

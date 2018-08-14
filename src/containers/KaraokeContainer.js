@@ -8,14 +8,23 @@ class KaraokeContainer extends Component {
 
 
   state = {
-    playlist: []
+    playlist: [],
+    lyricsDisplay: {}
   }
   
   
   componentDidMount() {
     return fetch('http://192.168.3.119:3000/users/1/songs').then(res => res.json()).then(res => this.setState({
+      ...this.state,
       playlist: res
     }))
+  }
+
+  clickPlay = (songObj) => {
+    this.setState({
+      ...this.state,
+      lyricsDisplay: songObj
+    })
   }
   
   
@@ -25,9 +34,9 @@ class KaraokeContainer extends Component {
       <div className="karaoke-container">
         <div className="sidebar">
           <Filter />
-          <SongList playList={this.state.playlist}/>
+          <SongList playList={this.state.playlist} clickPlay={this.clickPlay}/>
         </div>
-        <KaraokeDisplay />
+        <KaraokeDisplay songToDisplay={this.state.lyricsDisplay}/>
       </div>
     );
   }
