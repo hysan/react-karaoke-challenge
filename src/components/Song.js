@@ -1,11 +1,12 @@
 import React from 'react';
+import uuid from 'uuid'
+const Song = (props) => {
 
-const Song = () => {
   return (
-    <tr className="song">
-      <td>title</td>
-      <td>singer</td>
-      <td><button>Play</button></td>
+    <tr className="song" key ={uuid()}>
+      <td>{props.title}</td>
+      <td>{props.singer}</td>
+      <td><button onCLick = {(event) => props.handlePlay(props.title)}>Play</button></td>
     </tr>
   )
 }
