@@ -1,4 +1,4 @@
-const songs = [
+const notSongs = [
   {
     id: 0,
     title: "Johnny B. Goode",
