@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Filter from '../components/Filter';
 import SongList from '../components/SongList';
 import KaraokeDisplay from '../components/KaraokeDisplay';
+import VoteBar from '../components/VoteBar.js'
 
 class KaraokeContainer extends Component {
 
@@ -12,12 +13,30 @@ class KaraokeContainer extends Component {
   }
 
   componentDidMount(){
+    this.getSongs()
+  }
+
+  getSongs = () => {
     fetch('http://192.168.3.119:3000/users/4/songs').then(resp => resp.json()).then(resp => {this.setState({songs: resp, filteredSongs: resp})})
   }
 
   handleClick = (id) =>{
-    fetch('http://192.168.3.119:3000/users/4/songs/' + id).then(resp => resp.json()).then(resp => {this.setState({playingSong: resp})})
-    
+    if (this.state.playingSong.id !== id){
+      fetch('http://192.168.3.119:3000/users/4/songs/' + id).then(resp => resp.json()).then(resp => {this.setState({playingSong: resp})})
+
+      fetch('http://192.168.3.119:3000/users/4/songs/' + id + '/play', {
+  method: 'PATCH', headers: {"Content-Type": "application/json"}}).then(resp => resp.json()).then(resp => {this.getSongs()})}
+
+  }
+
+  handleLike = (id) => {
+    fetch('http://192.168.3.119:3000/users/4/songs/' + id + '/like', {
+method: 'PATCH', headers: {"Content-Type": "application/json"}}).then(resp => {this.getSongs()})
+  }
+
+  handleDislike = (id) => {
+    fetch('http://192.168.3.119:3000/users/4/songs/' + id + '/dislike', {
+method: 'PATCH', headers: {"Content-Type": "application/json"}}).then(resp => {this.getSongs()})
   }
 
   handleFilter = (event) => {
@@ -33,7 +52,11 @@ class KaraokeContainer extends Component {
           <Filter handleFilter={this.handleFilter} />
           <SongList handleClick={this.handleClick} songs={this.state.filteredSongs} />
         </div>
-        <KaraokeDisplay song={this.state.playingSong} />
+        <div classname="sidebar">
+          <VoteBar song={this.state.playingSong} handleDislike={this.handleDislike} handleLike={this.handleLike} />
+          <KaraokeDisplay song={this.state.playingSong} />
+        </div>
+
       </div>
     );
   }
