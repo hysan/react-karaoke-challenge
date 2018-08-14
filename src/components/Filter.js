@@ -15,7 +15,6 @@ class Filter extends Component {
   }
 
   callHandleSearch = () => {
-    
     this.props.handleSearch(this.state.search)
   }
 
