@@ -4,7 +4,9 @@ import SongList from '../components/SongList';
 import KaraokeDisplay from '../components/KaraokeDisplay';
 // import songs from '../data/songs';
 
+
 class KaraokeContainer extends Component {
+
 
 
   state = {
@@ -32,7 +34,22 @@ class KaraokeContainer extends Component {
     this.setState({
       ...this.state,
       filter: event.target.value
-    })
+    }, this.filterSongs)
+  }
+
+  filterSongs = () => {
+
+    if (this.state.filter === ""){
+      return fetch('http://192.168.3.119:3000/users/1/songs').then(res => res.json()).then(res => this.setState({
+        ...this.state,
+        playlist: res
+      }))
+    } else {
+      this.setState({
+        ...this.state,
+        playlist: [...this.state.playlist].filter(song => song.title.includes(this.state.filter))
+      }) 
+    }
   }
   
   
