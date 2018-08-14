@@ -1,9 +1,9 @@
 import React from 'react';
 
-const VoteBar = ({ upTitle, voteUp, downTitle, voteDown }) => {
+const VoteBar = ({ upTitle, voteUp, downTitle, voteDown, currentSong }) => {
   return (
     <div className="vote-bar">
-      <button
+      <button likes={currentSong.likes}
         className="pure-button up-button"
         onClick={voteUp}
       >

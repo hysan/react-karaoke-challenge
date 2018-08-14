@@ -1,12 +1,8 @@
 import React from 'react';
 
-const Song = () => {
+const Song = ({songId, playChange}) => {
   return (
-    <tr className="song">
-      <td>title</td>
-      <td>singer</td>
-      <td><button>Play</button></td>
-    </tr>
+    <td><button id={songId} onClick={playChange}>Play</button></td>
   )
 }
 
