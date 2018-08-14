@@ -1,4 +1,5 @@
 import React from 'react';
+import Song from './Song';
 
 class SongList extends React.Component {
 
@@ -9,9 +10,9 @@ class SongList extends React.Component {
 
 
   handleClick = (event) => {
-    // console.log("you touched the butt", this.state);
+    console.log("you touched the butt", event.target);
     this.setState({
-      currentSelectedSongTitle: event.target.name,
+      currentSelectedSongTitle: event.target.title,
       currentSelectedSongLyrics: event.target.value,
     }, () => {
       this.props.playClickHandler(this.state);
@@ -19,11 +20,24 @@ class SongList extends React.Component {
   }
 
 
+  // createSongs = () => {
+  //   const songThingies = this.props.songs.map((song) => {
+  //     return (<p key={song.title}> {song.title}, by {song.singer}.
+  //     <button onClick={this.handleClick} value={song.lyrics} name={song.title}>Play</button>
+  //     </p>)
+  //   })
+  //   return songThingies;
+  // }
+
   createSongs = () => {
     const songThingies = this.props.songs.map((song) => {
-      return (<p key={song.title}> {song.title}, by {song.singer}.
-      <button onClick={this.handleClick} value={song.lyrics} name={song.title}>Play</button>
-      </p>)
+      // return (<p key={song.title}> {song.title}, by {song.singer}.
+      // <button onClick={this.handleClick} value={song.lyrics} name={song.title}>Play</button>
+      // </p>)
+
+      return(
+        <Song key={song.title} title={song.title} singer={song.singer} lyrics={song.lyrics} handleClick={this.handleClick} />
+      )
     })
     return songThingies;
   }
