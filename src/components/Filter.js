@@ -7,7 +7,6 @@ class Filter extends Component {
   }
 
   handleChange = (event) => {
-    console.log(event.target.value)
     this.setState({
       input: event.target.value
     }, () => this.props.updateSongs(this.state.input))

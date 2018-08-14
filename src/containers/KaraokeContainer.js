@@ -55,7 +55,6 @@ class KaraokeContainer extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className="karaoke-container">
         <div className="sidebar">
