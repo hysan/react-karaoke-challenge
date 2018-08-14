@@ -9,7 +9,8 @@ class KaraokeContainer extends Component {
 
   state = {
     playlist: [],
-    lyricsDisplay: {}
+    lyricsDisplay: {},
+    filter: ""
   }
   
   
@@ -26,6 +27,13 @@ class KaraokeContainer extends Component {
       lyricsDisplay: songObj
     })
   }
+
+  handleFilter = (event) => {
+    this.setState({
+      ...this.state,
+      filter: event.target.value
+    })
+  }
   
   
   
@@ -33,7 +41,7 @@ class KaraokeContainer extends Component {
     return (
       <div className="karaoke-container">
         <div className="sidebar">
-          <Filter />
+          <Filter handleFilter={this.handleFilter}/>
           <SongList playList={this.state.playlist} clickPlay={this.clickPlay}/>
         </div>
         <KaraokeDisplay songToDisplay={this.state.lyricsDisplay}/>
