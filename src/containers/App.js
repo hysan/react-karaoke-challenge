@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <div className="app">
         <Header />
-        <KaraokeContainer />
+        <KaraokeContainer songData={this.state.songData}/>
       </div>
     );
   }
