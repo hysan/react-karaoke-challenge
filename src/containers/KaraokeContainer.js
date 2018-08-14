@@ -7,9 +7,9 @@ import KaraokeDisplay from '../components/KaraokeDisplay';
 
 class KaraokeContainer extends Component {
 
-  ogSongs = []
-
+  
   state = {
+    ogSongs: [],
     playlist: [],
     lyricsDisplay: {},
     filter: ""
@@ -18,33 +18,35 @@ class KaraokeContainer extends Component {
   fetchData = () => {
     return fetch('http://192.168.3.119:3000/users/1/songs').then(res => res.json())
     .then(res => this.setState({
-      ...this.state,
+      
       playlist: res
     }))
   }
   
   
   componentDidMount() {
-    this.fetchData().then( () => {this.ogSongs = this.state.playlist})
+    this.fetchData().then( () => {this.setState({
+      ogSongs: this.state.playlist
+    })})
   }
 
   clickPlay = (songObj) => {
     this.setState({
-      ...this.state,
+      
       lyricsDisplay: songObj
     })
   }
 
   handleFilter = (event) => {
     this.setState({
-      ...this.state,
+      
       filter: event.target.value
     }, this.filterSongs)
   }
 
   songArr = () => {
-    return [...this.ogSongs].filter(song => {
-      return song.title.includes(this.state.filter)
+    return [...this.state.ogSongs].filter(song => {
+      return song.title.toLowerCase().includes(this.state.filter.toLowerCase())
     })
   }
 
@@ -55,12 +57,12 @@ class KaraokeContainer extends Component {
     /// but i'm too low on time to check
     if (this.state.filter === ""){
       this.setState({
-        ...this.state,
-        playlist: this.ogSongs
+        
+        playlist: this.state.ogSongs
       }) 
     } else {
       this.setState({
-        ...this.state,
+        
         playlist: this.songArr()
       }) 
     }
