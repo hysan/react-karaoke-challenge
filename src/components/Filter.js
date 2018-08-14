@@ -11,7 +11,12 @@ class Filter extends Component {
   handleChange = (event) => {
     this.setState({
       search: event.target.value
-    }, this.props.handleSearch(this.state.search))
+    }, () => this.callHandleSearch())
+  }
+
+  callHandleSearch = () => {
+    
+    this.props.handleSearch(this.state.search)
   }
 
   render() {
