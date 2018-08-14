@@ -28,16 +28,15 @@ class KaraokeContainer extends Component {
   }
 
   filterSongs = (search) => {
-    this.setState({
-      songs: [...this.state.songs].filter((song) => {
-        song.title.toLowerCase().includes(search.toLowerCase())
+      this.setState({
+        songs: [...this.state.songs].filter((song) => {
+          song.title.toLowerCase().includes(search.toLowerCase())
+        })
       })
-    })
   }
 
   render() {
 
-    debugger
     return (
       <div className="karaoke-container">
         <div className="sidebar">

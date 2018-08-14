@@ -12,8 +12,6 @@ class Filter extends Component {
     }, () => { this.props.filter(this.state.search)})
   }
 
-
-
   render() {
     return (
       <div className="filter">

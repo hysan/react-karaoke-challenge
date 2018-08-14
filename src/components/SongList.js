@@ -1,4 +1,5 @@
 import React from 'react';
+import Song from './Song'
 
 const SongList = (props) => {
 
@@ -9,14 +10,8 @@ const SongList = (props) => {
   }
 
   let renderSongs = songs.map((song) => {
-    const {title, singer} = song
-
     return (
-      <tr>
-        <td>{title}</td>
-        <td>{singer}</td>
-        <td onClick={(event) => handleClick(event, song)}>▶</td>
-      </tr>
+     <Song song={song} onClick={(event) => handleClick(event, song)}/>
     )
   })
 
