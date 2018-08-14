@@ -1,6 +1,11 @@
 import React from 'react';
 
-const SongList = () => {
+const SongList = (props) => {
+
+  const handlePlay = (event) => {
+    props.playSong(Number(event.target.id))
+  }
+
   return (
     <table className="song-list">
       <tbody>
@@ -10,8 +15,16 @@ const SongList = () => {
           <th>▶</th>
         </tr>
 
-        {/* Your Code Goes Here */}
-        
+        {props.songs.map(song => {
+          return (
+            <tr key={song.id}>
+              <td>{song.title}</td>
+              <td>{song.singer}</td>
+              <td><button id={song.id} onClick={handlePlay}>Play</button></td>
+            </tr>
+          )
+        })}
+
       </tbody>
     </table>
   )
