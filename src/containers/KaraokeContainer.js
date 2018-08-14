@@ -30,7 +30,7 @@ class KaraokeContainer extends Component {
   filterSongs = (search) => {
       this.setState({
         songs: [...this.state.songs].filter((song) => {
-          song.title.toLowerCase().includes(search.toLowerCase())
+          return song.title.toLowerCase().includes(search.toLowerCase())
         })
       })
   }
