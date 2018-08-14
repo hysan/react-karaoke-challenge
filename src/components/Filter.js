@@ -4,8 +4,6 @@ class Filter extends Component {
   
   // how am i typing in the filter if state hasn't been preset?
 
-
-  
   render() {
     return (
       <div className="filter">
