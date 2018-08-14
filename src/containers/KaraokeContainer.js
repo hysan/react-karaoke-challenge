@@ -10,6 +10,7 @@ class KaraokeContainer extends Component {
 
   state = {
     songs: [],
+    currentSong: '',
     search: ''
   }
 
@@ -28,11 +29,11 @@ search = (value) => {
 
 check = () => {
   if (this.state.search === '') {
-    return <SongList songs={this.state.songs} ifPlayClickedTopLevel={this.ifPlayClickedTopLevel}/>
+    return <SongList songs={this.state.songs} establishCurrentSong={this.establishCurrentSong}/>
   }
   else {
     let searchedMusic = [...this.state.songs].filter(song => { return song.title.toLowerCase().includes(this.state.search.toLowerCase())});
-    return <SongList songs={searchedMusic} ifPlayClickedTopLevel={this.ifPlayClickedTopLevel}/>
+    return <SongList songs={searchedMusic} establishCurrentSong={this.establishCurrentSong}/>
   }
 }
 
@@ -43,15 +44,19 @@ check = () => {
           <Filter onChange={this.search} filteredMusic={this.state.search}/>
           {this.check()}
         </div>
-          <KaraokeDisplay songs={this.state.songs} ifPlayClickedTopLevel={this.ifPlayClickedTopLevel}/>
+          <KaraokeDisplay song={this.state.currentSong} establishCurrentSong={this.establishCurrentSong}/>
       </div>
     );
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////
-  ifPlayClickedTopLevel = (song) => {
-    //console.log(song)
-  }
+
+establishCurrentSong = (clickedSong) => {
+  this.setState({
+    currentSong: clickedSong
+  })
+}
+
 }
 
 export default KaraokeContainer;

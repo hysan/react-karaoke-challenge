@@ -4,7 +4,7 @@ import Song from './Song'
 class SongList extends Component {
 
 songMapper = () => {
-  return this.props.songs.map(song => <Song key={song.id} song={song} ifPlayClicked={this.props.ifPlayClickedTopLevel}/>)
+  return this.props.songs.map(song => <Song key={song.id} song={song} currentSong={this.currentSong}/>)
 }
 
   render() {
@@ -22,12 +22,10 @@ songMapper = () => {
     )
   }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////
 
-  ifPlayClicked = (event, lyrics) => {
-    console.log(event)
-  this.props.ifPlayClickedTopLevel(lyrics)
-}
+currentSong = (song) => {
+    this.props.establishCurrentSong(song)
+  }
 
 }
 
