@@ -39,6 +39,7 @@ class KaraokeContainer extends Component {
       ...this.state,
       searchTerm: searchTerm
     }, () => {
+
       const filteredSongs = this.state.songs.filter((song) => {
         return (song.title.toLowerCase()).includes(searchTerm.toLowerCase())
       })
@@ -46,7 +47,7 @@ class KaraokeContainer extends Component {
       this.setState({
         ...this.state,
         filteredSongs: filteredSongs
-      })
+      }, () => {console.log(this.state.searchTerm)})
     })
 
 
@@ -57,7 +58,7 @@ class KaraokeContainer extends Component {
       <div className="karaoke-container">
         <div className="sidebar">
           <Filter handleSearch={this.handleSearch}/>
-          <SongList songs={this.state.searchTerm === '' ? this.state.songs : this.state.filteredSongs} songToDisplay={this.handleSongToDisplay}/>
+          <SongList songs={this.state.searchTerm === "" ? this.state.songs : this.state.filteredSongs} songToDisplay={this.handleSongToDisplay}/>
         </div>
         <KaraokeDisplay song={this.state.songToDisplay}/>
       </div>
