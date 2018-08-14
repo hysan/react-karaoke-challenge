@@ -2,14 +2,24 @@ import React, { Component } from 'react';
 import Filter from '../components/Filter';
 import SongList from '../components/SongList';
 import KaraokeDisplay from '../components/KaraokeDisplay';
-import songs from '../data/songs';
+// import songs from '../data/songs';
 
 class KaraokeContainer extends Component {
   state = {
-    songs: songs,
+    songs: [],
     currentSelectedSong: '',
-    filteredSongs: songs,
+    filteredSongs: [],
   }
+
+
+  componentDidMount() {
+    fetch('http://192.168.3.119:3000/users/8/songs')
+      .then(response => response.json())
+      .then(data => this.setState({
+        songs: data,
+        filteredSongs: data}));
+  }
+
 
   playClickHandler = (songToPlay) => {
     // console.log(songToPlay)
