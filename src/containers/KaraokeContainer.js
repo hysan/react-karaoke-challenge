@@ -21,12 +21,16 @@ class KaraokeContainer extends Component {
 
   handlePlayButton = (event) => {
     // console.log("ive been clicked")
-    let songObj = this.state.songs.find(song => song.id === parseInt(event.target.name));
+    // let songObj = this.state.songs.find(song => song.id === parseInt(event.target.name));
     // console.log(songObj)
-    this.setState({
+    // this.setState({
+    //   ...this.state,
+    //   song: {...songObj}
+    // })
+    fetch(`http://192.168.3.119:3000/users/9/songs/${event.target.name}`).then(resp => resp.json()).then(data => this.setState({
       ...this.state,
-      song: {...songObj}
-    })
+      song: data
+    }))
   }
 
   handleFilter = (name) => {
