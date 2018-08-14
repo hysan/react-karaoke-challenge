@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
 
 function lyricsToArray(lyrics) {
-  if (lyrics) {
-    const lines = lyrics.split('\n');
-    const words = lines.reduce((words, line) => {
-      words = words.concat(line.split(' '))
-      words.push('\n');
-      return words;
-    }, []);
-    return words;
-  }
-  return [];
+    
+    if (lyrics) {
+        const lines = lyrics.split('\n');
+        const words = lines.reduce((words, line) => {
+            words = words.concat(line.split(' '))
+            words.push('\n');
+            return words;
+        }, []);
+        return words;
+    }
+    return [];
 }
 
 class Lyrics extends Component {
-  constructor(props) {
-    super(props);
-
+    constructor(props) {
+        super(props);
+        
+        console.log(props.lyrics);
     this.state = {
       lyrics: null,
       lyricsArray: null,
