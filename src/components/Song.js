@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Song = () => {
-  return (
-    <tr className="song">
-      <td>title</td>
-      <td>singer</td>
-      <td><button>Play</button></td>
-    </tr>
-  )
+class Song extends Component {
+
+  render() {
+    return (
+      <tr className="song">
+        <td>{this.props.song.title}</td>
+        <td>{this.props.song.singer}</td>
+        <td><button onClick={this.clickPlay} value={this.props.song.lyrics}>Play</button></td>
+      </tr>
+    )
+  }
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+clickPlay = (event) => {
+  let lyrics = event.target.value
+  //console.log(lyrics)
+  this.props.ifPlayClicked(event, lyrics)
 }
+
+}
+
 
 export default Song;
