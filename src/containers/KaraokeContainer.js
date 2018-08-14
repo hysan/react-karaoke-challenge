@@ -55,7 +55,7 @@ class KaraokeContainer extends Component {
   }
 
   fetchSongs = () => {
-    fetch('http://192.168.3.119:3000/songs')
+    fetch('http://192.168.3.119:3000/users/2/songs')
     .then(res=>res.json())
     .then(data=>this.setState({
       songs: data
