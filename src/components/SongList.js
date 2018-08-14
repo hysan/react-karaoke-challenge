@@ -10,7 +10,7 @@ const SongList = props => {
           <th>Singer</th>
           <th>▶</th>
         </tr>
-        {props.songs.map((song, idx) => (
+        {props.songList.map((song, idx) => (
           <Song key={idx} song={song} selector={props.songIdSelector} />
         ))}
       </tbody>

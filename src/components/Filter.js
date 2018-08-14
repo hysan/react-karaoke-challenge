@@ -9,6 +9,7 @@ class Filter extends Component {
           id="title-filter"
           type="text"
           onChange={this.props.handleFilter}
+          value={this.props.searchTerm}
         />
       </div>
     );

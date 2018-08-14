@@ -9,7 +9,7 @@ const URL = "http://192.168.3.119:3000/users/3/songs";
 class KaraokeContainer extends Component {
   state = {
     songs: [],
-    selectedSong: "",
+    selectedSong: {},
     searchTerm: ""
   };
 
@@ -18,7 +18,10 @@ class KaraokeContainer extends Component {
     this.setSong(id);
   };
 
-  setSong = num => this.setState({ selectedSong: num });
+  setSong = num =>
+    this.setState({
+      selectedSong: this.state.songs.find(song => song.id === parseInt(num))
+    });
 
   componentDidMount() {
     fetch(URL)
@@ -26,24 +29,38 @@ class KaraokeContainer extends Component {
       .then(data => this.setState({ songs: data }));
   }
 
-  handleFilter = event => {
+  setSearchTerm = event =>
     this.setState({ searchTerm: event.target.value }, () =>
-      this.setState({
-        songs: this.state.songs.filter(song =>
-          song.title.includes(this.state.searchTerm)
-        )
-      })
+      console.log(this.state.searchTerm)
     );
-  };
+
+  filterSongs = () =>
+    this.state.songs.filter(song =>
+      song.title.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+    );
+
+  // handleFilter = event => {
+  //   this.setState({ searchTerm: event.target.value }, () =>
+  //     this.setState({
+  //       songs: this.state.songs.filter(song =>
+  //         song.title.includes(this.state.searchTerm)
+  //       )
+  //     })
+  //   );
+  // };
 
   render() {
+    console.log(this.filterSongs());
     return (
       <div className="karaoke-container">
         <div className="sidebar">
-          <Filter handleFilter={this.handleFilter} />
-          <SongList {...this.state} songIdSelector={this.selectSongId} />
+          <Filter handleFilter={this.setSearchTerm} {...this.state} />
+          <SongList
+            songList={this.filterSongs()}
+            songIdSelector={this.selectSongId}
+          />
         </div>
-        <KaraokeDisplay data={this.state} />
+        <KaraokeDisplay song={this.state.selectedSong} />
       </div>
     );
   }
