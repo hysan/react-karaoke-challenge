@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Filter from '../components/Filter';
 import SongList from '../components/SongList';
 import KaraokeDisplay from '../components/KaraokeDisplay';
-import songs from '../data/songs';
 
 class KaraokeContainer extends Component {
 
@@ -18,6 +17,7 @@ class KaraokeContainer extends Component {
 
   handleClick = (id) =>{
     fetch('http://192.168.3.119:3000/users/4/songs/' + id).then(resp => resp.json()).then(resp => {this.setState({playingSong: resp})})
+    
   }
 
   handleFilter = (event) => {
