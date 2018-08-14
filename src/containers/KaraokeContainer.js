@@ -7,20 +7,24 @@ import KaraokeDisplay from '../components/KaraokeDisplay';
 
 class KaraokeContainer extends Component {
 
-
+  ogSongs = []
 
   state = {
     playlist: [],
     lyricsDisplay: {},
     filter: ""
   }
-  
-  
-  componentDidMount() {
+
+  fetchData = () => {
     return fetch('http://192.168.3.119:3000/users/1/songs').then(res => res.json()).then(res => this.setState({
       ...this.state,
       playlist: res
     }))
+  }
+  
+  
+  componentDidMount() {
+    this.fetchData().then( () => {this.ogSongs = this.state.playlist})
   }
 
   clickPlay = (songObj) => {
@@ -38,7 +42,7 @@ class KaraokeContainer extends Component {
   }
 
   songArr = () => {
-    return [...this.state.playlist].filter(song => {
+    return [...this.ogSongs].filter(song => {
       return song.title.includes(this.state.filter)
     })
   }
@@ -47,10 +51,10 @@ class KaraokeContainer extends Component {
   filterSongs = () => {
 
     if (this.state.filter === ""){
-      return fetch('http://192.168.3.119:3000/users/1/songs').then(res => res.json()).then(res => this.setState({
+      this.setState({
         ...this.state,
-        playlist: res
-      }))
+        playlist: this.ogSongs
+      }) 
     } else {
       this.setState({
         ...this.state,
