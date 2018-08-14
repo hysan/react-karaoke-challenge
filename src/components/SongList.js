@@ -4,7 +4,7 @@ import Song from './Song'
 const SongList = (props) => {
 
   const songsArray = props.songs.map((song) => {
-    return <Song key={song.id} song={song} songToDisplay={props.songToDisplay}/>
+    return <Song key={song.id} addPlay={props.addPlay} song={song} songToDisplay={props.songToDisplay}/>
   })
 
   return (
@@ -13,10 +13,10 @@ const SongList = (props) => {
         <tr>
           <th>Title</th>
           <th>Singer</th>
-          <th>▶</th>
           <th>Plays</th>
           <th>Likes</th>
           <th>Dislikes</th>
+          <th>▶</th>
         </tr>
         {songsArray}
       </tbody>

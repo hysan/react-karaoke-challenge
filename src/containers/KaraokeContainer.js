@@ -10,7 +10,7 @@ class KaraokeContainer extends Component {
     songs: [],
     songToDisplay: '',
     filteredSongs: [],
-    searchTerm: ''
+    searchTerm: '',
   }
 
   componentDidMount() {
@@ -18,7 +18,7 @@ class KaraokeContainer extends Component {
   }
 
   fetchSongs = () => {
-    fetch('http://192.168.3.119:3000//users/6/songs').then(res => res.json()).then(json => this.updateSongsState(json))
+    fetch('http://localhost:4000/users/6/songs').then(res => res.json()).then(json => this.updateSongsState(json))
   }
 
   updateSongsState = (json) => {
@@ -55,14 +55,90 @@ class KaraokeContainer extends Component {
     })
   }
 
+  handleLike = (updatedSong) => {
+    const url = `http://localhost:4000/users/6/songs/${updatedSong.id}/like`
+
+    fetch(url, {
+      method: 'PATCH',
+    }).then(res => res.json()).then(json => this.updateLikeState(json))
+  }
+
+  updateLikeState = (updatedSong) => {
+    const updatedSongsArray = this.state.songs.map((song) => {
+      const returnSong = {...song}
+
+      if (updatedSong.id === song.id) {
+        returnSong.likes = updatedSong.likes
+      }
+      return returnSong
+    })
+
+    this.setState({
+      ...this.state,
+      songs: updatedSongsArray
+    }, () => this.updateFilterState())
+  }
+
+  handleDislike = (updatedSong) => {
+
+    const url = `http://localhost:4000/users/6/songs/${updatedSong.id}/dislike`
+
+    fetch(url, {
+      method: 'PATCH',
+    }).then(res => res.json()).then(json => this.updateDislikeState(json))
+  }
+
+  updateDislikeState = (updatedSong) => {
+    const updatedSongsArray = this.state.songs.map((song) => {
+      const returnSong = {...song}
+
+      if (updatedSong.id === song.id) {
+        returnSong.dislikes = updatedSong.dislikes
+      }
+      return returnSong
+    })
+
+    this.setState({
+      ...this.state,
+      songs: updatedSongsArray
+    }, () => this.updateFilterState())
+  }
+
+  handlePlay = (updatedSong) => {
+    const url = `http://localhost:4000/users/6/songs/${updatedSong.id}/play`
+
+    if (updatedSong.id !== this.state.songToDisplay.id) {
+      fetch(url, {
+        method: 'PATCH',
+      }).then(res => res.json()).then(json => this.updatePlaysState(json))
+    }
+  }
+
+  updatePlaysState = (updatedSong) => {
+    const updatedSongsArray = this.state.songs.map((song) => {
+      const returnSong = {...song}
+
+      if (updatedSong.id === song.id) {
+        returnSong.plays = updatedSong.plays
+      }
+
+      return returnSong
+    })
+
+    this.setState({
+      ...this.state,
+      songs: updatedSongsArray
+    }, () => this.updateFilterState())
+  }
+
   render() {
     return (
       <div className="karaoke-container">
         <div className="sidebar">
           <Filter handleSearch={this.handleSearch}/>
-          <SongList songs={this.state.searchTerm.length === 0 ? this.state.songs : this.state.filteredSongs} songToDisplay={this.handleSongToDisplay}/>
+          <SongList addPlay={this.handlePlay} songs={this.state.searchTerm.length === 0 ? this.state.songs : this.state.filteredSongs} songToDisplay={this.handleSongToDisplay}/>
         </div>
-        <KaraokeDisplay song={this.state.songToDisplay}/>
+        <KaraokeDisplay like={this.handleLike} dislike={this.handleDislike} song={this.state.songToDisplay}/>
       </div>
     );
   }

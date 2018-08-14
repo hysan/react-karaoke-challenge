@@ -4,6 +4,7 @@ const Song = (props) => {
 
   const handleClick = () => {
     props.songToDisplay(props.song)
+    props.addPlay(props.song)
   }
 
   return (
