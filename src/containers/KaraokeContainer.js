@@ -7,7 +7,8 @@ import songs from '../data/songs';
 class KaraokeContainer extends Component {
 
   state = {
-    songs: []
+    songs: [],
+    songToDisplay: ''
   }
 
   componentDidMount() {
@@ -24,16 +25,21 @@ class KaraokeContainer extends Component {
     })
   }
 
-
+  handleSongToDisplay = (song) => {
+    this.setState({
+      ...this.state,
+      songToDisplay: song
+    })
+  }
 
   render() {
     return (
       <div className="karaoke-container">
         <div className="sidebar">
           <Filter />
-          <SongList songs={this.state.songs}/>
+          <SongList songs={this.state.songs} songToDisplay={this.handleSongToDisplay}/>
         </div>
-        <KaraokeDisplay />
+        <KaraokeDisplay song={this.state.songToDisplay}/>
       </div>
     );
   }
