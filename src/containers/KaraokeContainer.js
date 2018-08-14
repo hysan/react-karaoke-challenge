@@ -16,7 +16,8 @@ class KaraokeContainer extends Component {
   }
 
   fetchData = () => {
-    return fetch('http://192.168.3.119:3000/users/1/songs').then(res => res.json()).then(res => this.setState({
+    return fetch('http://192.168.3.119:3000/users/1/songs').then(res => res.json())
+    .then(res => this.setState({
       ...this.state,
       playlist: res
     }))
@@ -50,6 +51,8 @@ class KaraokeContainer extends Component {
 
   filterSongs = () => {
 
+    /// these next five lines might be redundant 
+    /// but i'm too low on time to check
     if (this.state.filter === ""){
       this.setState({
         ...this.state,
