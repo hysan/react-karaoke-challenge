@@ -5,14 +5,39 @@ import KaraokeDisplay from '../components/KaraokeDisplay';
 import songs from '../data/songs';
 
 class KaraokeContainer extends Component {
+  state = {
+    songs: songs,
+    currentSelectedSong: '',
+    filteredSongs: songs,
+  }
+
+  playClickHandler = (songToPlay) => {
+    // console.log(songToPlay)
+    this.setState({
+      currentSelectedSong: songToPlay
+    })
+  }
+
+  searchHandler = (searchValue) => {
+    // debugger;
+    let filteredSongs = this.state.songs
+    filteredSongs = filteredSongs.filter((song) => {
+      return song.title.includes(searchValue.currentSearchTerm)
+    })
+
+    this.setState({
+      filteredSongs: filteredSongs
+    })
+  }
+
   render() {
     return (
       <div className="karaoke-container">
         <div className="sidebar">
-          <Filter />
-          <SongList />
+          <Filter searchHandler={this.searchHandler} />
+          <SongList songs={this.state.filteredSongs} playClickHandler={this.playClickHandler} />
         </div>
-        <KaraokeDisplay />
+        <KaraokeDisplay currentSelectedSong={this.state.currentSelectedSong}/>
       </div>
     );
   }
