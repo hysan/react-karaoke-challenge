@@ -37,6 +37,13 @@ class KaraokeContainer extends Component {
     }, this.filterSongs)
   }
 
+  songArr = () => {
+    return [...this.state.playlist].filter(song => {
+      return song.title.includes(this.state.filter)
+    })
+  }
+
+
   filterSongs = () => {
 
     if (this.state.filter === ""){
@@ -47,7 +54,7 @@ class KaraokeContainer extends Component {
     } else {
       this.setState({
         ...this.state,
-        playlist: [...this.state.playlist].filter(song => song.title.includes(this.state.filter))
+        playlist: this.songArr()
       }) 
     }
   }
