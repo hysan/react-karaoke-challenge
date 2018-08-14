@@ -6,19 +6,24 @@ import KaraokeDisplay from '../components/KaraokeDisplay';
 
 class KaraokeContainer extends Component {
 
-  state = {
-    songs: [],
-    filter: '',
-    song: {
-      id: -1,
-      title: '',
-      singer: '',
-      lyrics: '',
-      plays: -1,
-      likes: -1,
-      dislikes: -1
+  constructor(props){
+    super(props)
+    this.apiURL = 'http://localhost:4000/users/2/songs/'
+    this.state = {
+      songs: [],
+      filter: '',
+      song: {
+        id: -1,
+        title: '',
+        singer: '',
+        lyrics: '',
+        plays: -1,
+        likes: -1,
+        dislikes: -1
+      }
     }
   }
+
 
   changeFilter = (event) => {
     this.setState({
@@ -41,11 +46,11 @@ class KaraokeContainer extends Component {
   }
 
   voteUp = () => {
-console.log('up');
+    this.like()
   }
 
   voteDown = () => {
-console.log('down');
+    this.dislike()
   }
 
   render() {
@@ -65,7 +70,7 @@ console.log('down');
   }
 
   fetchSongs = () => {
-    fetch('http://192.168.3.119:3000/users/2/songs')
+    fetch(this.apiURL)
     .then(res=>res.json())
     .then(data=>this.setState({
       songs: data
@@ -76,9 +81,26 @@ console.log('down');
     const config = {
       method: 'PATCH'
     }
-    fetch(`http://192.168.3.119:3000/users/2/songs/${this.state.song.id}/play`, config).
+    fetch(this.apiURL + `${this.state.song.id}/play`, config).
     then(res=>{this.fetchSongs()})
   }
+
+  like = () => {
+    const config = {
+      method: 'PATCH'
+    }
+    fetch(this.apiURL + `${this.state.song.id}/like`, config).
+    then(res=>{this.fetchSongs()})
+  }
+
+  dislike = () => {
+    const config = {
+      method: 'PATCH'
+    }
+    fetch(this.apiURL + `${this.state.song.id}/dislike`, config).
+    then(res=>{this.fetchSongs()})
+  }
+
 }
 
 export default KaraokeContainer;
