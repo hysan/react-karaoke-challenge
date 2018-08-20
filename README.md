@@ -28,8 +28,8 @@ It's now up to you to fix the rest of the codebase before the start of Karaoke N
 
 - Clone this repository in a different directory: `https://github.com/hysan/react-karaoke-challenge-backend`
 - `cd` into it.
-- Run `bundle` to install your dependencies.
-- Run `rails db:create && rails db:migrate && rails db:seed` to create and seed your database.
+- Run `bundle install` to install your dependencies.
+- Run `rails db:create rails db:migrate rails db:seed` to create and seed your database.
 - Run `rails s -p 4000` and the API will be running on `localhost:4000`.
 
 **Routes**
