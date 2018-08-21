@@ -1,6 +1,20 @@
 import React from 'react';
+import Song from './Song'
 
-const SongList = () => {
+const SongList = (props) => {
+
+  const {songs} = props
+
+  let handleClick = (event, song) => {
+    props.onClick(song)
+  }
+
+  let renderSongs = songs.map((song) => {
+    return (
+     <Song song={song} onClick={(event) => handleClick(event, song)}/>
+    )
+  })
+
   return (
     <table className="song-list">
       <tbody>
@@ -11,7 +25,8 @@ const SongList = () => {
         </tr>
 
         {/* Your Code Goes Here */}
-        
+        {renderSongs}
+
       </tbody>
     </table>
   )
