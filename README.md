@@ -60,6 +60,7 @@ It's now up to you to fix the rest of the codebase before the start of Karaoke N
 - You have 4 milestones to complete. Consider each as its own independent set of deliverables.
 - **Don't proceed to the next milestone until you've finished the previous set of deliverables.**
 - After each milestone, commit your work! Maybe even use branches!
+- At the bottom of this README are the _Criteria_ for this code challenge.
 
 _For Milestone 1:_
 
