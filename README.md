@@ -1,7 +1,7 @@
 README
 ======
 
-## React Mock Code Challenge
+## React Karaoke Challenge! 🎤🎶
 
 ### Instructions
 
@@ -31,13 +31,13 @@ It's now up to you to fix the rest of the codebase before the start of Karaoke N
 - Clone this repository in a different directory: `https://github.com/learn-co-curriculum/react-karaoke-challenge-backend`
 - `cd` into it.
 - Run `bundle install` to install your dependencies.
-- Run `rails db:create rails db:migrate rails db:seed` to create and seed your database.
+- Run `rails db:create db:migrate db:seed` to create and seed your database.
 - Run `rails s -p 4000` and the API will be running on `localhost:4000`.
 
 **Routes**
 
 - URL for database: `http://localhost:4000`
-- You will be given a `:user_id`
+- You can use any id between 1 and 30 for your `:user_id`
 
 **Please use your own ID or else you will be editing someone else's data!**
 
@@ -55,25 +55,27 @@ It's now up to you to fix the rest of the codebase before the start of Karaoke N
 
 ---
 
-### Suggested Workflow
+## Suggested Workflow
 
-- Consider each set of deliverables as a milestone. Don't proceed until you've finished the previous set of deliverables:
-  - **Deliverables**
-  - **BONUS**
-  - **SUPER BONUS**
-  - **SUPER DUPER BONUS**
+- You have 4 milestones to complete. Consider each as its own independent set of deliverables.
+- **Don't proceed to the next milestone until you've finished the previous set of deliverables.**
+- After each milestone, commit your work! Maybe even use branches!
+
+_For Milestone 1:_
+
 - Use the fake data in `data/songs.js` first to make sure some of your components work.
 - Then replace the data with the fetched data so you have a way to confirm it.
 - After that, you can tackle the rest of the deliverables.
-- Before each bonus, commit your work and branch!
 
 ---
 
-### Deliverables
+## Deliverables
 
-This is your end goal:
+### Milestone 1
 
-![result](react-karaoke-challenge.gif)
+Let's get a bare minimum karaoke machine working. This is your end goal:
+
+![result](react-karaoke-challenge-milestone-1.gif)
 
 - [ ] Display a list of songs with their artist in the left sidebar.
 - [ ] The list of songs will come from `http://localhost:4000`.
@@ -84,7 +86,7 @@ This is your end goal:
 
 ---
 
-**BONUS**
+### Milestone 2
 
 Being the React master that you are, you noticed some extra data and capabilities in the API: `plays`, `likes`, and `dislikes`. So you decided to add some flair to the karaoke machine ;)
 
@@ -100,13 +102,15 @@ Being the React master that you are, you noticed some extra data and capabilitie
 
 Your end result should look like this:
 
-![result](react-karaoke-challenge-bonus.gif)
+![result](react-karaoke-challenge-milestone-2.gif)
 
 ---
 
-**SUPER BONUS!**
+### Milestone 3
 
-You are a React GOD and thought the previous bonus was easy. You decide to add queuing functionality like a real karaoke booth. To do this, you will be refactoring your code to do the following:
+Now those are some smooth beats :)
+
+Next, you decide to add queuing functionality like a real karaoke booth. To do this, you will be refactoring your code to do the following:
 
 _(Be sure to branch before tackling this!)_
 
@@ -126,13 +130,13 @@ _(Be sure to branch before tackling this!)_
 
 Your end result should look like this (`Lyrics` is sped up for this example):
 
-![result](react-karaoke-challenge-super-bonus.gif)
+![result](react-karaoke-challenge-milestone-3.gif)
 
 ---
 
-**SUPER DUPER BONUS!**
+### Milestone 4
 
-Gods are perfect and you notice that your code isn't as clean as it can be. Let's make things perfect by _refactoring_:
+Something sounds off. You notice that your code isn't as clean as it can be. Let's make things pitch perfect by _refactoring_:
 
 - [ ] The queue should not show the `Likes`, `Dislikes`, `Plays`, and `▶` columns.
 - [ ] Is all of your `state` living in a single place? If so, ask yourself, "Have I lifted too far?" (_hint: you probably have_)
@@ -141,11 +145,11 @@ Gods are perfect and you notice that your code isn't as clean as it can be. Let'
 
 Your end result should look like this:
 
-![result](react-karaoke-challenge-super-duper-bonus.gif)
+![result](react-karaoke-challenge-milestone-4.gif)
 
 ---
 
-### Criteria
+## Criteria
 
 We’ll be evaluating your code based on the following criteria:
 
