@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SongList = () => {
+const SongList = (props) => {
   return (
     <table className="song-list">
       <tbody>
@@ -10,8 +10,8 @@ const SongList = () => {
           <th>▶</th>
         </tr>
 
-        {/* Your Code Goes Here */}
-        
+        {props.showSongs()}
+
       </tbody>
     </table>
   )
