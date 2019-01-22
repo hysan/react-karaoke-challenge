@@ -15,6 +15,10 @@ class KaraokeContainer extends Component {
   }
 
   componentDidMount() {
+    this.getSongs()
+  }
+
+  getSongs = () => {
     fetch(API)
     .then(res => res.json())
     .then(songs => {
@@ -23,7 +27,40 @@ class KaraokeContainer extends Component {
   }
 
   handlePlay = (id) => {
-    this.setState({ selected: id })
+    if (this.state.selected !== id) {
+      this.setState({ selected: id }, () => {
+        fetch(API + `/${id}/play`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type' : 'application/json',
+            'Accept' : 'application/json'
+          }
+        })
+        .then(() => this.getSongs())
+      })
+    }
+  }
+
+  handleLike = (id) => {
+    fetch(API + `/${id}/like`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type' : 'application/json',
+        'Accept' : 'application/json'
+      }
+    })
+    .then(() => this.getSongs())
+  }
+
+  handleDislike = (id) => {
+    fetch(API + `/${id}/dislike`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type' : 'application/json',
+        'Accept' : 'application/json'
+      }
+    })
+    .then(() => this.getSongs())
   }
 
   handleFilter = () => {
@@ -33,7 +70,7 @@ class KaraokeContainer extends Component {
 
   handleChange = (event) => {
     const filter = event.target.value
-    this.setState({ filter }, () => this.handleFilter())
+    this.setState({ filter })
   }
 
   render() {
@@ -43,7 +80,7 @@ class KaraokeContainer extends Component {
           <Filter handleChange={this.handleChange} filter={this.state.filter}/>
           {this.handleFilter()}
         </div>
-        {this.state.selected ? <KaraokeDisplay song={this.state.songs.find(song => song.id === this.state.selected)}/> : <KaraokeDisplay song={{title: 'Select a Song', lyrics: 'example song lyrics'}}/>}
+        {this.state.selected ? <KaraokeDisplay song={this.state.songs.find(song => song.id === this.state.selected)} voteUp={this.handleLike} voteDown={this.handleDislike}/> : <KaraokeDisplay song={{title: 'Select a Song', lyrics: 'example song lyrics'}}/>}
       </div>
     );
   }
