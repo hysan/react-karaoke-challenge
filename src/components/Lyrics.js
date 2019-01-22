@@ -99,6 +99,7 @@ class Lyrics extends Component {
   }
 
   render() {
+    
     return (
       <div className="lyrics">
         <pre>
