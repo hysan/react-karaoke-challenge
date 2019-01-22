@@ -14,7 +14,7 @@ class Filter extends Component {
     return (
       <div className="filter">
         <label htmlFor="title-filter">Title: </label>
-        <input id="title-filter" type="text" value={this.state.searchInput} onChange={this.handleChange}/>
+        <input id="title-filter" type="text" value={this.state.searchInput} onChange={this.handleChange} filterSongs={this.props.filterSongs(this.state.searchInput)}/>
       </div>
     );
   }
@@ -22,3 +22,4 @@ class Filter extends Component {
 
 export default Filter;
 // {this.state.searchInput}
+//

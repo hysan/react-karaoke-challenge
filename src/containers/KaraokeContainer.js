@@ -18,10 +18,12 @@ class KaraokeContainer extends Component {
     return this.state.songs.find(song => song.id == this.state.selectedSongId)}
 
   filterSongs = (searchInput) => {
-    const copySongs = [...this.state.song]
-    const filteredSongs = copySongs.filter(song => song.includes(searchInput))
+    const copySongs = [...this.state.songs]
+    const filtered = copySongs.filter(song => song.title.includes(searchInput))
 
-    console.log(filteredSongs);
+    console.log(filtered);
+    
+    //Vicky went over this, look over the project, you're running into the same problem where it will filter but it won't accept the subsequent letters after the initial letter.
   }
 
   componentDidMount() {
@@ -37,11 +39,11 @@ class KaraokeContainer extends Component {
     return (
       <div className="karaoke-container">
         <div className="sidebar">
-          <Filter songs={this.state.songs}/>
+          <Filter songs={this.state.songs} filterSongs={this.filterSongs}/>
           <SongList
             songs={this.state.songs} handleClickPlay={this.handleClickPlay}/>
         </div>
-        {this.state.selectedSongId ?   <KaraokeDisplay song={this.findSong() } filterSongs={this.filterSongs}/> : null}
+        {this.state.selectedSongId ?   <KaraokeDisplay song={this.findSong()} /> : null}
 
       </div>
     );
