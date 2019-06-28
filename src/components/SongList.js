@@ -1,6 +1,25 @@
-import React from 'react';
+import React, {Fragment} from 'react';
+import UUID from 'uuid'
 
-const SongList = () => {
+//components
+import Song from "./Song" 
+
+const SongList = (props) => {
+
+  function buildList() {
+    return props.songs.map( function(song) {
+      return (
+        <Fragment key={UUID()}>
+          <Song 
+            song={song}
+            selectedSong={(passedSong) => props.selectedSong(passedSong)}
+          />
+        </Fragment>
+      )
+    })
+  }
+
+
   return (
     <table className="song-list">
       <tbody>
@@ -10,7 +29,7 @@ const SongList = () => {
           <th>▶</th>
         </tr>
 
-        {/* Your Code Goes Here */}
+        {buildList()}
         
       </tbody>
     </table>
