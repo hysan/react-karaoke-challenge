@@ -5,14 +5,49 @@ import KaraokeDisplay from '../components/KaraokeDisplay';
 import songs from '../data/songs';
 
 class KaraokeContainer extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      query: "",
+      currentSong: "",
+      songList: songs,
+      currentSongList: ["placeholder"]
+    }
+  }
+
+
+
+  onNewQuery = (event) => {
+    this.setState({query: event.target.value})
+    console.log("current query", this.state.query)
+    this.filterSong();
+  }
+
+  filterSong = () => {
+    let filteredSongList = this.state.songList.slice().filter(individualSong =>
+    individualSong.includes(this.state.query))
+    this.setState({currentSongList: filteredSongList});
+  }
+
+
+
+  chooseCurrentSong = (event) => {
+    event.persist()
+    let userSelection = songs.find(function(individualSong){
+      return (individualSong.title === (event.target.innerText));
+    })
+    this.setState({currentSong: userSelection})
+  }
+
   render() {
     return (
       <div className="karaoke-container">
         <div className="sidebar">
-          <Filter />
-          <SongList />
+          <Filter query={this.state.query} onNewQuery={this.onNewQuery}/>
+          <SongList currentSongList={this.state.currentSongList} chooseCurrentSong={this.chooseCurrentSong}/>
         </div>
-        <KaraokeDisplay />
+        <KaraokeDisplay currentSong={this.state.currentSong}/>
       </div>
     );
   }
