@@ -1,6 +1,7 @@
 import React from 'react';
 
-const SongList = () => {
+const SongList = (props) => {
+
   return (
     <table className="song-list">
       <tbody>
@@ -9,9 +10,18 @@ const SongList = () => {
           <th>Singer</th>
           <th>▶</th>
         </tr>
+        {props.songs.map((song) => {
+          return(
+              <tr key={song.id}>
+                <td>{song.title}</td>
+                <td>{song.singer}</td>
+                <td><button
+                  id={song.id}
+                  onClick={props.playSong}>Play</button></td>
+              </tr>
+            )
+          })}
 
-        {/* Your Code Goes Here */}
-        
       </tbody>
     </table>
   )
